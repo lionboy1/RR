@@ -1,18 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//using RR.Combat;
+using RR.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RR.Movement
 {
-    //[RequireComponent(typeof(NavMeshAgent))]
-    public class Mover : MonoBehaviour
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(ActionScheduler))]
+    public class Mover : MonoBehaviour, IAction
     {
 
         [SerializeField]
         Transform target;
 
+        NavMeshAgent _agent;
+              
+        ActionScheduler _actionScheduler;
                   
+       void Start()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            if(_agent == null)
+            {
+                Debug.LogError("NavMeshAgent component not found");
+            }
+            
+            _actionScheduler = GetComponent<ActionScheduler>();
+            if(_actionScheduler == null)
+            {
+                Debug.LogError("ActionScheduler component not found");
+            }
+        }                  
         // Update is called once per frame
         void Update()
         {
@@ -22,13 +40,25 @@ namespace RR.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            GetComponent<NavMeshAgent>().destination = destination;
+             _agent.isStopped = false;
+            _agent.destination = destination;
+        }
+
+        public void Cancel() 
+        {
+            _agent.isStopped = true;
+        }
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            _actionScheduler.StartAction(this);//takes care of starting and stopping mover/fighter compoents
+            MoveTo(destination);
         }
 
         void UpdateAnimator()
         {
             //First get global velocity on navmesh agent
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = _agent.velocity;
             //convert to local velocity
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             //Which direction of interest for movement
