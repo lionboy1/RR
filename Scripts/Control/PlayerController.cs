@@ -52,11 +52,12 @@ namespace RR.Control
             {
                 //Does object that is hit have the CombatTarget component?
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                //if(target == null) continue;//Skip this current iteration only and move to the next iteration
-                if(!_fighter.CanAttack(target)) continue;//abort this current iteration and continue loop.
+                if(target == null) continue;//Skip this current iteration only and move to the next iteration
+
+                if(!_fighter.CanAttack(target.gameObject)) continue;//abort this current iteration and continue loop.
                 if(Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                 }
                 return true;
             }

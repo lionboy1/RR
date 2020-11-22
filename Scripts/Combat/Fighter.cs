@@ -65,7 +65,7 @@ namespace RR.Combat
             return Vector3.Distance(target.transform.position, transform.position) < weaponRange;
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if(combatTarget == null) return false;
             Health targetToCheck = combatTarget.GetComponent<Health>();
@@ -74,7 +74,9 @@ namespace RR.Combat
             return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
         }
 
-        public void Attack(CombatTarget combatTarget)
+        //Since the playe and AI share the fighter class, the player cannot
+        //have a CombatTarget component, so the GameObject argument is used instead
+        public void Attack(GameObject combatTarget)
         {
             _actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
