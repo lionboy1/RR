@@ -20,6 +20,7 @@ namespace RR.Combat
         float _weaponDamage;
         
         ActionScheduler _actionScheduler;
+        bool _canAttack = false;
         
         void Start() 
         {
@@ -64,6 +65,15 @@ namespace RR.Combat
             return Vector3.Distance(target.transform.position, transform.position) < weaponRange;
         }
 
+        public bool CanAttack(CombatTarget combatTarget)
+        {
+            if(combatTarget == null) return false;
+            Health targetToCheck = combatTarget.GetComponent<Health>();
+            //Now that the combat target is found, it is not null
+            //However, still check to see if it is dead or alive
+            return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
+        }
+
         public void Attack(CombatTarget combatTarget)
         {
             _actionScheduler.StartAction(this);
@@ -72,18 +82,32 @@ namespace RR.Combat
         }
         public void Cancel()
         {
+            StopAttack();
             target = null;
         }
+
+        private void StopAttack()
+        {
+            _anim.SetTrigger("stopAttack");
+            _anim.ResetTrigger("attack");//Get it ready to be used next time
+        }
+
         void AttackBehavior()
         {
             transform.LookAt(target.transform);
             //Throttle attacks
-            if(timeSinceLastAttack > timeBetweenAttacks)    
-            {   
-                _anim.SetTrigger("attack");
+            if(timeSinceLastAttack > timeBetweenAttacks)
+            {
+                TriggerAttack();
                 timeSinceLastAttack = 0;
                 target.Damage(_weaponDamage);
             }
+        }
+
+        private void TriggerAttack()
+        {
+            _anim.ResetTrigger("stopAttack");//resets trigger
+            _anim.SetTrigger("attack");
         }
     }
 }

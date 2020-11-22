@@ -6,6 +6,16 @@ namespace RR.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        Fighter _fighter;
+
+        void Start()
+        {
+            _fighter = GetComponent<Fighter>();
+            if(_fighter == null)
+            {
+                Debug.LogError("Fighter Component not found!");
+            }
+        }
         void Update()
         {
             if(InteractWithCombat()) return;//If clicked is enemy, attack.
@@ -42,8 +52,8 @@ namespace RR.Control
             {
                 //Does object that is hit have the CombatTarget component?
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if(target == null) continue;//Skip this current iteration only and move to the next iteration
-
+                //if(target == null) continue;//Skip this current iteration only and move to the next iteration
+                if(!_fighter.CanAttack(target)) continue;//abort this current iteration and continue loop.
                 if(Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(target);
