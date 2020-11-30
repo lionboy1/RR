@@ -12,7 +12,7 @@ namespace RR.Combat
         float weaponRange = 2.0f;
         [SerializeField]
         float timeBetweenAttacks = 1.0f;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;//Starts as if already happened, so character can do the first attack immediately.
         Health target;
         Mover _mover;
         Animator _anim;
@@ -49,7 +49,7 @@ namespace RR.Combat
             //If in range of target
             if (target != null && !RangeCheck())
             {
-                _mover.MoveTo(target.transform.position);
+                _mover.MoveTo(target.transform.position, 1f);//The maximum value (100%) for full speed.
             }
             //If not close enough to target yet...
             else

@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace RR.Combat
+namespace RR.Core
 {
     public class Health : MonoBehaviour
     {
         [SerializeField]
         float _health = 100f;
         Animator _anim;
+        ActionScheduler _actionScheduler;
         bool isDead = false;
 
         //Getter so other classes can query is target is dead or not
@@ -23,6 +22,11 @@ namespace RR.Combat
             if(_anim == null)
             {
                 Debug.LogError("Animator not found");
+            }
+            _actionScheduler = GetComponent<ActionScheduler>();
+            if(_actionScheduler == null)
+            {
+                Debug.LogError("actionScheduler component not found!");
             }
         }
 
@@ -47,6 +51,8 @@ namespace RR.Combat
             //Otherwise, continue
             _anim.SetTrigger("die");
             isDead = true;
+
+            _actionScheduler.CancelCurrentAction();
         }
     }
 }

@@ -15,5 +15,10 @@ namespace RR.Core
             }
             currentAction = action;//Set current action to the new action instead
         }
+
+        public void CancelCurrentAction()
+        {
+            StartAction(null);
+        }
     }
 }

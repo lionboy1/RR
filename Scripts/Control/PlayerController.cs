@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using RR.Movement;
 using RR.Combat;
+using RR.Core;
 
 namespace RR.Control
 {
     public class PlayerController : MonoBehaviour
     {
         Fighter _fighter;
+        Health _health;
+        Mover _mover;
 
         void Start()
         {
@@ -15,9 +18,20 @@ namespace RR.Control
             {
                 Debug.LogError("Fighter Component not found!");
             }
+            _health = GetComponent<Health>();
+            if(_health == null)
+            {
+                Debug.LogError("Health component not found");
+            }
+            _mover = GetComponent<Mover>();
+            if(_mover == null)
+            {
+                Debug.LogError("Mover component not found");
+            }
         }
         void Update()
         {
+            if(_health.IsDead()) return;
             if(InteractWithCombat()) return;//If clicked is enemy, attack.
             if(InteractWithMovement()) return;
         }
@@ -32,7 +46,7 @@ namespace RR.Control
             {
                 if(Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    _mover.StartMoveAction(hit.point, 1f);//1f just means do max value since max is set to 1 in the range.  The player will go faster based on animation anyways.
                 }
                 return true;
             }
@@ -55,7 +69,7 @@ namespace RR.Control
                 if(target == null) continue;//Skip this current iteration only and move to the next iteration
 
                 if(!_fighter.CanAttack(target.gameObject)) continue;//abort this current iteration and continue loop.
-                if(Input.GetMouseButtonDown(0))
+                if(Input.GetMouseButton(0))
                 {
                     GetComponent<Fighter>().Attack(target.gameObject);
                 }
