@@ -5,6 +5,7 @@ using RR.Core;
 
 namespace RR.Control
 {
+    [RequireComponent(typeof(Health))]
     public class PlayerController : MonoBehaviour
     {
         Fighter _fighter;

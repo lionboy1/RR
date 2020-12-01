@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 namespace RR.Control
 {
+    [RequireComponent(typeof(Health))]
     public class AIController : MonoBehaviour 
     {
         [SerializeField] float chaseDistance = 5f;
