@@ -16,7 +16,7 @@ namespace RR.Core
             return isDead;
         }
 
-        void Start()
+        void Awake()
         {
             _anim = this.GetComponent<Animator>();
             if(_anim == null)
@@ -30,14 +30,10 @@ namespace RR.Core
             }
         }
 
-        void Update()
-        {
-
-        }
-
+     
         public void Damage(float damage)
         {
-            _health = Mathf.Max(_health -= damage, 0);//Reduces health but not under 0
+            _health = Mathf.Max(_health - damage, 0);//Reduces health but not under 0
             if(_health == 0)
             {
                Die();

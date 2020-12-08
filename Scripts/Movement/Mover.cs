@@ -1,4 +1,5 @@
 ﻿//using RR.Combat;
+using System.Collections;
 using RR.Core;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,8 +17,9 @@ namespace RR.Movement
         ActionScheduler _actionScheduler;
         Health _health;
                   
-       void Start()
+       void Awake()
         {
+            //yield return new WaitForSeconds(5);
             _agent = GetComponent<NavMeshAgent>();
             if(_agent == null)
             {
@@ -58,7 +60,7 @@ namespace RR.Movement
 
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
-            _actionScheduler.StartAction(this);//takes care of starting and stopping mover/fighter compoents
+            _actionScheduler.StartAction(this);//takes care of starting and stopping mover/fighter components
             MoveTo(destination, speedFraction);
         }
 

@@ -1,29 +1,34 @@
 using UnityEngine;
 using RR.Movement;
 using RR.Core;
+using System.Collections;
 
 namespace RR.Combat
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(ActionScheduler))]
-    public class Fighter : MonoBehaviour, IAction {
-
-        [SerializeField]
-        float weaponRange = 2.0f;
+    public class Fighter : MonoBehaviour, IAction 
+    {
+       
         [SerializeField]
         float timeBetweenAttacks = 1.0f;
         float timeSinceLastAttack = Mathf.Infinity;//Starts as if already happened, so character can do the first attack immediately.
         Health target;
         Mover _mover;
         Animator _anim;
-        [SerializeField]
-        float _weaponDamage;
+        
+        [SerializeField] Weapon weapon = null;//Scriptable Object
+        
         
         ActionScheduler _actionScheduler;
         bool _canAttack = false;
         
-        void Start() 
+        Transform handTransform;
+        
+        #region
+        void Awake() 
         {
+            //yield return new WaitForSeconds(5);
             _mover = GetComponent<Mover>();
             if(_mover == null)
             {
@@ -41,6 +46,7 @@ namespace RR.Combat
                 Debug.LogError("Animator component not attached!");
             }
         }
+        #endregion
         void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -62,7 +68,7 @@ namespace RR.Combat
 
         private bool RangeCheck()
         {
-            return Vector3.Distance(target.transform.position, transform.position) < weaponRange;
+            return Vector3.Distance(target.transform.position, transform.position) < weapon.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -80,7 +86,7 @@ namespace RR.Combat
         {
             _actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
-            target.GetComponent<Health>().Damage(3f);
+            target.GetComponent<Health>().Damage(0f);
         }
         public void Cancel()
         {
@@ -90,8 +96,8 @@ namespace RR.Combat
 
         private void StopAttack()
         {
-            _anim.SetTrigger("stopAttack");
             _anim.ResetTrigger("attack");//Get it ready to be used next time
+            _anim.SetTrigger("stopAttack");
         }
 
         void AttackBehavior()
@@ -102,7 +108,7 @@ namespace RR.Combat
             {
                 TriggerAttack();
                 timeSinceLastAttack = 0;
-                target.Damage(_weaponDamage);
+                target.Damage(weapon.GetDamage());
             }
         }
 
@@ -110,6 +116,12 @@ namespace RR.Combat
         {
             _anim.ResetTrigger("stopAttack");//resets trigger
             _anim.SetTrigger("attack");
+        }
+
+        void SpawnWeapon()
+        {
+            if(weapon == null) return;
+            weapon.Spawn(handTransform, _anim);
         }
     }
 }

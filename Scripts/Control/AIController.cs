@@ -8,6 +8,7 @@ using UnityEngine.AI;
 namespace RR.Control
 {
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(ActionScheduler))]
     public class AIController : MonoBehaviour 
     {
         [SerializeField] float chaseDistance = 5f;
@@ -28,7 +29,7 @@ namespace RR.Control
         int currentWaypointIndex = 0;//Start at waypoint 1
         ActionScheduler _actionScheduler;
         #region
-        void Start()
+        void Awake()
         {
             //Wherever transform is originally
             //placed that is where it will guard.
@@ -55,7 +56,7 @@ namespace RR.Control
                 Debug.LogError("Health component not found");
             }
             _actionScheduler = GetComponent<ActionScheduler>();
-            if(_actionScheduler)
+            if(_actionScheduler == null)
             {
                 Debug.LogError("ActionScheduler component not found");
             }
@@ -67,7 +68,6 @@ namespace RR.Control
             if (_health.IsDead()) return;
             if (InAttackRangeOfPlayer() && _fighter.CanAttack(player))
             {
-
                 AttackBehavior();
             }
             else if (_timeSinceLastSawPlayer < _suspicionTime)
@@ -130,7 +130,7 @@ namespace RR.Control
         private void AttackBehavior()
         {
             //Reset time since just saw before attacking.
-            //_mover.MoveTo(player.transform.position);
+            _mover.MoveTo(player.transform.position, 1);
             _timeSinceLastSawPlayer = 0;
             _fighter.Attack(player);
         }
