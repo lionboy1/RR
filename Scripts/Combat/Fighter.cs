@@ -17,13 +17,14 @@ namespace RR.Combat
         Mover _mover;
         Animator _anim;
         
-        [SerializeField] Weapon weapon = null;//Scriptable Object
+        [SerializeField] Weapon defaultWeapon = null;//Scriptable Object
         
         
         ActionScheduler _actionScheduler;
         bool _canAttack = false;
         
-        Transform handTransform;
+        [SerializeField] Transform handTransform;
+        Weapon _currentWeapon = null;
         
         #region
         void Awake() 
@@ -47,6 +48,12 @@ namespace RR.Combat
             }
         }
         #endregion
+        #region
+        void Start()
+        {
+            EquipWeapon(defaultWeapon);
+        }
+        #endregion
         void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -68,7 +75,7 @@ namespace RR.Combat
 
         private bool RangeCheck()
         {
-            return Vector3.Distance(target.transform.position, transform.position) < weapon.GetRange();
+            return Vector3.Distance(target.transform.position, transform.position) < _currentWeapon.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -108,7 +115,7 @@ namespace RR.Combat
             {
                 TriggerAttack();
                 timeSinceLastAttack = 0;
-                target.Damage(weapon.GetDamage());
+                target.Damage(_currentWeapon.GetDamage());
             }
         }
 
@@ -118,9 +125,9 @@ namespace RR.Combat
             _anim.SetTrigger("attack");
         }
 
-        void SpawnWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if(weapon == null) return;
+            _currentWeapon = weapon;
             weapon.Spawn(handTransform, _anim);
         }
     }
