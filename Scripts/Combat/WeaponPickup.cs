@@ -12,6 +12,7 @@ namespace RR.Combat
         {
             if(other.gameObject.tag == "Player")
             {
+                Debug.Log("Picking up spear!") ;
                 other.GetComponent<Fighter>().EquipWeapon(weapon);
                 Destroy(this.gameObject);
             }
