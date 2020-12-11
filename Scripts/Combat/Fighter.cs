@@ -45,6 +45,7 @@ namespace RR.Combat
             if( _anim == null)
             {
                 Debug.LogError("Animator component not attached!");
+                //if (!animator) Debug.Log($"{name} has no Animator");
             }
         }
         #endregion
@@ -115,7 +116,7 @@ namespace RR.Combat
             {
                 TriggerAttack();
                 timeSinceLastAttack = 0;
-                target.Damage(_currentWeapon.GetDamage());
+                //target.Damage(_currentWeapon.GetDamage());
             }
         }
 
@@ -129,6 +130,12 @@ namespace RR.Combat
         {
             _currentWeapon = weapon;
             weapon.Spawn(handTransform, _anim);
+        }
+        //Animation event
+        void Hit()
+        {
+            if(target == null) return;
+            target.Damage(_currentWeapon.GetDamage());
         }
     }
 }

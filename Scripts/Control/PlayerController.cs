@@ -70,7 +70,7 @@ namespace RR.Control
                 if(target == null) continue;//Skip this current iteration only and move to the next iteration
 
                 if(!_fighter.CanAttack(target.gameObject)) continue;//abort this current iteration and continue loop.
-                if(Input.GetMouseButton(0))
+                if(Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(target.gameObject);
                 }
