@@ -23,7 +23,8 @@ namespace RR.Combat
         ActionScheduler _actionScheduler;
         bool _canAttack = false;
         
-        [SerializeField] Transform handTransform;
+        [SerializeField] Transform rightHandTransform;
+        [SerializeField] Transform leftHandTransform;
         Weapon _currentWeapon = null;
         
         #region
@@ -129,7 +130,15 @@ namespace RR.Combat
         public void EquipWeapon(Weapon weapon)
         {
             _currentWeapon = weapon;
-            weapon.Spawn(handTransform, _anim);
+            weapon.Spawn(rightHandTransform, leftHandTransform, _anim);
+            _anim.SetTrigger("Pickup");
+            Invoke("StopPickup", 2);
+            
+        }
+
+        void StopPickup()
+        {
+            _anim.SetTrigger("StopPickup");
         }
         //Animation event
         void Hit()
@@ -137,5 +146,11 @@ namespace RR.Combat
             if(target == null) return;
             target.Damage(_currentWeapon.GetDamage());
         }
+        //Animation event
+        /*public void ResetPickupTrigger()
+        {
+            _anim.ResetTrigger("Pickup");
+        }*/
+
     }
 }
