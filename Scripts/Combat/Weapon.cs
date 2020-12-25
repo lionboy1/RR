@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RR.Core;
+using UnityEngine;
 
 namespace RR.Combat
 {
@@ -10,20 +11,38 @@ namespace RR.Combat
         [SerializeField] float weaponRange = 2.0f;
         [SerializeField] float _weaponDamage;
         [SerializeField] bool isRightHanded;
+        [SerializeField] Projectile projectile = null;
 
         public void Spawn(Transform rightHand, Transform leftHand,Animator anim)
         {
             if (equippedPrefab != null)
             {
-                Transform handTransform;
-                if(isRightHanded) handTransform = rightHand;
-                else handTransform = leftHand;
+                Transform handTransform = GetTransform(rightHand, leftHand);
                 Instantiate(equippedPrefab, handTransform);
             }
-            if(_animatorOverride != null)
+            if (_animatorOverride != null)
             {
                 anim.runtimeAnimatorController = _animatorOverride;
             }
+        }
+
+        private Transform GetTransform(Transform rightHand, Transform leftHand)
+        {
+            Transform handTransform;
+            if (isRightHanded) handTransform = rightHand;
+            else handTransform = leftHand;
+            return handTransform;
+        }
+
+        public bool HasProjectile()
+        {
+            return projectile != null;
+        }
+
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        {
+            Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
+            projectileInstance.SetTarget(target);
         }
         public float GetRange()
         {

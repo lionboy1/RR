@@ -144,7 +144,15 @@ namespace RR.Combat
         void Hit()
         {
             if(target == null) return;
-            target.Damage(_currentWeapon.GetDamage());
+
+            if(_currentWeapon.HasProjectile())
+            {
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.Damage(_currentWeapon.GetDamage());
+            }
         }
         //Animation event
         /*public void ResetPickupTrigger()
