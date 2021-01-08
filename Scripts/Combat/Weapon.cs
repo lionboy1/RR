@@ -42,7 +42,8 @@ namespace RR.Combat
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
             Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget(target);
+            //Will raycast and let physics handle projectile flight instead of setting target
+            //projectileInstance.SetTarget(target);
         }
         public float GetRange()
         {

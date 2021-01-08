@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   _animatorOverride: {fileID: 22100000, guid: a38bee4f654ff9a4f9fc6cdaef2fe838, type: 2}
-  equippedPrefab: {fileID: 3992437114035510005, guid: 7f228ee514cbf484b9004f8718b668c5,
+  equippedPrefab: {fileID: 4643304825121029851, guid: 74318f099f010f24bbc991d459963fa6,
     type: 3}
-  weaponRange: 10
+  weaponRange: 20
   _weaponDamage: 50
   isRightHanded: 0
+  projectile: {fileID: 3217699630165058257, guid: 19b4dad37b385dc41bc259d40986ca99,
+    type: 3}

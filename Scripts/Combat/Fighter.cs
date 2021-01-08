@@ -141,7 +141,7 @@ namespace RR.Combat
             _anim.SetTrigger("StopPickup");
         }
         //Animation event
-        void Hit()
+        public void Hit()
         {
             if(target == null) return;
 
@@ -149,16 +149,17 @@ namespace RR.Combat
             {
                 _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
             }
-            else
+            //Handle damage later - maybe via raycast from weapon instead
+            /*else
             {
                 target.Damage(_currentWeapon.GetDamage());
-            }
+            }*/
         }
         //Animation event
         /*public void ResetPickupTrigger()
         {
             _anim.ResetTrigger("Pickup");
         }*/
-
+        
     }
 }
