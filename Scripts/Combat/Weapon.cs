@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RR.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class Weapon : ScriptableObject 
+    public class Weapon : ScriptableObject
     {
         [SerializeField] AnimatorOverrideController _animatorOverride = null;
         [SerializeField] GameObject equippedPrefab;
@@ -42,9 +42,12 @@ namespace RR.Combat
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
             Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
-            //Will raycast and let physics handle projectile flight instead of setting target
-            //projectileInstance.SetTarget(target);
+            
+            //Later, use raycast and let physics handle projectile flight instead of setting target
+            projectileInstance.SetTarget(target, _weaponDamage);
         }
+
+
         public float GetRange()
         {
             return weaponRange;

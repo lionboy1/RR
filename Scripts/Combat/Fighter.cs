@@ -26,6 +26,8 @@ namespace RR.Combat
         [SerializeField] Transform rightHandTransform;
         [SerializeField] Transform leftHandTransform;
         Weapon _currentWeapon = null;
+        public Transform arrowPos;
+        public GameObject projectile;
         
         #region
         void Awake() 
@@ -150,11 +152,12 @@ namespace RR.Combat
                 _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
             }
             //Handle damage later - maybe via raycast from weapon instead
-            /*else
+            else
             {
                 target.Damage(_currentWeapon.GetDamage());
-            }*/
+            }
         }
+        
         //Animation event
         /*public void ResetPickupTrigger()
         {

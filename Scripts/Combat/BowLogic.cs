@@ -13,8 +13,10 @@ namespace RR.Combat
         void Start()
         {
             //Instantiate projectile prefab with the projectile script attached to it.
-            projectilePrefab = Instantiate(projectilePrefab, projectileSpawnPos);
+            //projectilePrefab = Instantiate(projectilePrefab, projectileSpawnPos.position, projectileSpawnPos.rotation);
         }
+
+        
         
     }
 }
