@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using RR.Saving;
 
 namespace RR.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField]
         float _health = 100f;
@@ -49,6 +50,27 @@ namespace RR.Core
             isDead = true;
 
             _actionScheduler.CancelCurrentAction();
+        }
+
+        public object CaptureState()
+        {
+            return _health;
+        }
+
+        public void RestoreState(object state)
+        {
+            _health = (float)state;
+            //Force any character to remain dead if they were before saving
+            //Or they will spawn on load with 0 health but be alive
+            if(_health == 0)
+            {
+                Die();
+            }
+        }
+
+        public float GetCurrentHealth()
+        {
+            return _health;
         }
     }
 }

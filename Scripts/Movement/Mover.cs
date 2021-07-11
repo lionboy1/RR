@@ -3,12 +3,13 @@ using System.Collections;
 using RR.Core;
 using UnityEngine;
 using UnityEngine.AI;
+using RR.Saving;
 
 namespace RR.Movement
 {
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(ActionScheduler))]
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
 
         [SerializeField] Transform target;
@@ -74,6 +75,21 @@ namespace RR.Movement
             float speed = localVelocity.z;
             //Influence the float parameter on the animator by feding it the speed values from the local velocity.
             GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+        }
+
+        public object CaptureState()
+        {
+            return new SerializableVector3(transform.position);
+        }
+
+        public void RestoreState(object state)
+        {
+            SerializableVector3 position = (SerializableVector3) state;
+            //Disable nav mesh agent from interferring while positions are loading
+            GetComponent<NavMeshAgent>().enabled = false;
+            transform.position = position.ToVector();
+            //Re-enable nav agent after world positions are loaded
+            GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 }

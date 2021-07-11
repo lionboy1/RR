@@ -6,6 +6,7 @@ namespace RR.Combat
     //[RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour 
     {
+        [SerializeField] GameObject _bloodSplashEffect;
         [SerializeField] float speed = 35f;
 
         Health target = null;
@@ -59,7 +60,6 @@ namespace RR.Combat
             {
                 return transform.position;
             }
-            Debug.Log(target.transform.position);
             return target.transform.position + Vector3.up * targetCapsule.height / 2;
 
         }
@@ -72,8 +72,19 @@ namespace RR.Combat
             }
             else
             {
-                target.Damage(damage);
-                Destroy(this.gameObject);
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f,0f));
+                RaycastHit hitInfo;
+                if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+                {
+                    
+                    target.Damage(damage);
+                    if(col.GetComponent<Health>().GetCurrentHealth() == 0)
+                    {
+                        GameObject _bloodSplashInstance = Instantiate(_bloodSplashEffect, target.transform.position, Quaternion.LookRotation(hitInfo.normal));
+                    }
+                    Destroy(this.gameObject);
+                }
+                
             }
         }
 
