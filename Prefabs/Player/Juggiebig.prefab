@@ -1542,6 +1542,7 @@ GameObject:
   - component: {fileID: 6181118278332073962}
   - component: {fileID: 7031789676658955380}
   - component: {fileID: 2042674428133939943}
+  - component: {fileID: 6629359606709298694}
   m_Layer: 0
   m_Name: Juggiebig
   m_TagString: Player
@@ -1690,7 +1691,7 @@ MonoBehaviour:
   defaultWeapon: {fileID: 11400000, guid: 57601fd9b7b7ec54fb36a2afed9fcdec, type: 2}
   rightHandTransform: {fileID: 4873603138564536088}
   leftHandTransform: {fileID: 6521412222737348201}
-  arrowPos: {fileID: 5434742731441371485}
+  arrowPos: {fileID: 4873603138564536088}
   projectile: {fileID: 5276353315350305142, guid: 19b4dad37b385dc41bc259d40986ca99,
     type: 3}
 --- !u!95 &2465342143367960422
@@ -1767,6 +1768,19 @@ CapsuleCollider:
   m_Height: 22
   m_Direction: 1
   m_Center: {x: 0, y: 9.4, z: 0}
+--- !u!114 &6629359606709298694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574259154650707673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: d811e038-f12c-4993-af6f-76ff25d7ea35
 --- !u!1 &1759108892824592578
 GameObject:
   m_ObjectHideFlags: 0

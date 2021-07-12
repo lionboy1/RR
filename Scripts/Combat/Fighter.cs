@@ -1,6 +1,7 @@
 using UnityEngine;
 using RR.Movement;
 using RR.Core;
+using RR.Control;
 using System.Collections;
 
 namespace RR.Combat
@@ -97,7 +98,9 @@ namespace RR.Combat
         {
             _actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
-            target.GetComponent<Health>().Damage(0f);
+            
+            //Don't need these anymore.  Damage is called in Hit() below.
+            //target.GetComponent<Health>().Damage(50f);
         }
         public void Cancel()
         {

@@ -13,6 +13,7 @@ namespace RR.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float _suspicionTime = 10f;
+        [SerializeField] float _aggroCooldownTime = 10f;
         [SerializeField] PatrolPath _patrolPath;
         [SerializeField] float waypointTolerance = 1.0f;
         [SerializeField] float waypointDwellTime = 3.0f;
@@ -26,6 +27,7 @@ namespace RR.Control
         Vector3 _guardPosition;
         float _timeSinceLastSawPlayer = Mathf.Infinity;//Set to a long time ago so can reset for AI immediately on start;
         float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        float timeSinceAggravated = Mathf.Infinity;
         int currentWaypointIndex = 0;//Start at waypoint 1
         ActionScheduler _actionScheduler;
         #region
@@ -66,7 +68,7 @@ namespace RR.Control
         private void Update()
         {
             if (_health.IsDead()) return;
-            if (InAttackRangeOfPlayer() && _fighter.CanAttack(player))
+            if (IsAggravated() && _fighter.CanAttack(player))
             {
                 AttackBehavior();
             }
@@ -80,6 +82,11 @@ namespace RR.Control
                 PatrolBehavior();//will automaticall cancel currenc action.
             }
             UpdateTimers();
+        }
+
+        public void Aggravate()
+        {
+            timeSinceAggravated = 0;
         }
 
         private void UpdateTimers()
@@ -135,10 +142,11 @@ namespace RR.Control
             _fighter.Attack(player);
         }
 
-        bool InAttackRangeOfPlayer()
+        bool IsAggravated()
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            return distanceToPlayer < chaseDistance;
+            //Check if aggravation timer has expired
+            return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
         }
         //Called by Unity
         //Creates a gizmo to see enemy radius

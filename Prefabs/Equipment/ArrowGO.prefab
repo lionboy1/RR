@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d680eb1e036b5ff40bae58c713f6d087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bloodSplashEffect: {fileID: 1855497614338780, guid: 0f6ae018e7ac4494d987aa9222852b61,
+    type: 3}
   speed: 35
 --- !u!136 &1913285918972752505
 CapsuleCollider:

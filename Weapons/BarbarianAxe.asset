@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: BarbarianAxe
   m_EditorClassIdentifier: 
   _animatorOverride: {fileID: 22100000, guid: 928e42b8b505fbc4eb0f53110ed3d084, type: 2}
-  equippedPrefab: {fileID: 0}
-  weaponRange: 2
-  _weaponDamage: 0
+  equippedPrefab: {fileID: 3828755053582413117, guid: fdae4191cd1068f4ba59fc890e6fe4b1,
+    type: 3}
+  weaponRange: 5
+  _weaponDamage: 100
+  isRightHanded: 1
+  projectile: {fileID: 0}

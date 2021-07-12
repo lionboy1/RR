@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using RR.Saving;
+using RR.Control;
 
 namespace RR.Core
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        [SerializeField]
-        float _health = 100f;
+        [SerializeField] float m_currHealth = 100f;
+        [SerializeField] AudioSource m_deathAudio;
+        [SerializeField] AudioSource m_hurtAudio;
+        [SerializeField] GameObject _bloodSplashEffect;
         Animator _anim;
         ActionScheduler _actionScheduler;
         bool isDead = false;
 
-        //Getter so other classes can query is target is dead or not
+        //Getter so other classes can query if target is dead or not
         public bool IsDead()
         {
             return isDead;
@@ -34,10 +37,20 @@ namespace RR.Core
      
         public void Damage(float damage)
         {
-            _health = Mathf.Max(_health - damage, 0);//Reduces health but not under 0
-            if(_health == 0)
+            float L_originalHealth = m_currHealth;
+            m_currHealth = Mathf.Max(m_currHealth - damage, 0);//Reduces health but not under 0
+            
+            AIController L_aiController = GetComponent<AIController>();
+            
+            if(m_currHealth < L_originalHealth)
+            {
+                L_aiController.Aggravate();//AI is hurt and gets angry at player
+            }
+            
+            if(m_currHealth == 0)
             {
                Die();
+               GameObject _bloodSplashInstance = Instantiate(_bloodSplashEffect, transform.position, Quaternion.identity); 
             }
             
         }
@@ -48,29 +61,31 @@ namespace RR.Core
             //Otherwise, continue
             _anim.SetTrigger("die");
             isDead = true;
+            m_deathAudio.Play();
 
             _actionScheduler.CancelCurrentAction();
         }
 
         public object CaptureState()
         {
-            return _health;
+            return m_currHealth;
         }
 
         public void RestoreState(object state)
         {
-            _health = (float)state;
+            m_currHealth = (float)state;
             //Force any character to remain dead if they were before saving
             //Or they will spawn on load with 0 health but be alive
-            if(_health == 0)
+            if(m_currHealth == 0)
             {
+                
                 Die();
             }
         }
 
         public float GetCurrentHealth()
         {
-            return _health;
+            return m_currHealth;
         }
     }
 }
