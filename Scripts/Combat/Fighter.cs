@@ -17,6 +17,7 @@ namespace RR.Combat
         Health target;
         Mover _mover;
         Animator _anim;
+        [SerializeField] AudioSource attackAudio;
         
         [SerializeField] Weapon defaultWeapon = null;//Scriptable Object
         
@@ -29,6 +30,9 @@ namespace RR.Combat
         Weapon _currentWeapon = null;
         public Transform arrowPos;
         public GameObject projectile;
+
+        float aggressiveShoutsTime = Mathf.Infinity;
+        [SerializeField] float timeToShoutAgain;
         
         #region
         void Awake() 
@@ -50,6 +54,11 @@ namespace RR.Combat
             {
                 Debug.LogError("Animator component not attached!");
                 //if (!animator) Debug.Log($"{name} has no Animator");
+            }
+            AudioSource attackAudio = GetComponent<AudioSource>();
+            if(attackAudio == null)
+            {
+                Debug.LogError("No AudioSource found.");
             }
         }
         #endregion
@@ -88,6 +97,7 @@ namespace RR.Combat
             if(combatTarget == null) return false;
             Health targetToCheck = combatTarget.GetComponent<Health>();
             //Now that the combat target is found, it is not null
+            
             //However, still check to see if it is dead or alive
             return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
         }
@@ -98,9 +108,14 @@ namespace RR.Combat
         {
             _actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
-            
             //Don't need these anymore.  Damage is called in Hit() below.
             //target.GetComponent<Health>().Damage(50f);
+            if(aggressiveShoutsTime > timeToShoutAgain)
+            {
+                attackAudio.Play();
+                aggressiveShoutsTime = 0f;
+                aggressiveShoutsTime += Time.deltaTime;
+            }
         }
         public void Cancel()
         {

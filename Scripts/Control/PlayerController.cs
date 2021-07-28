@@ -2,6 +2,7 @@
 using RR.Movement;
 using RR.Combat;
 using RR.Core;
+using System;
 
 namespace RR.Control
 {
@@ -12,6 +13,27 @@ namespace RR.Control
         Health _health;
         Mover _mover;
 
+        enum CursorType
+        {
+            None,
+            Movement,
+            Combat
+        }
+
+       
+        [System.Serializable]
+          //Variable to hold data for cursor types
+        struct CursorMapping
+        {
+            public CursorType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
+        }
+
+        //Array of the struct above
+        [SerializeField] CursorMapping[] cursorMappings = null;
+       
+ 
         void Start()
         {
             _fighter = GetComponent<Fighter>();
@@ -35,6 +57,7 @@ namespace RR.Control
             if(_health.IsDead()) return;
             if(InteractWithCombat()) return;//If clicked is enemy, attack.
             if(InteractWithMovement()) return;
+            SetCursor(CursorType.None);
         }
 
         bool InteractWithMovement()
@@ -49,6 +72,7 @@ namespace RR.Control
                 {
                     _mover.StartMoveAction(hit.point, 1f);//1f just means do max value since max is set to 1 in the range.  The player will go faster based on animation anyways.
                 }
+                SetCursor(CursorType.Movement);
                 return true;
             }
             return false;
@@ -74,9 +98,27 @@ namespace RR.Control
                 {
                     GetComponent<Fighter>().Attack(target.gameObject);
                 }
+                SetCursor(CursorType.Combat);
                 return true;
             }
             return false;
+        }
+
+        void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+        CursorMapping GetCursorMapping(CursorType type)
+        {
+            foreach(CursorMapping mapping in cursorMappings)
+            {
+                if(mapping.type == type)
+                {
+                    return mapping;
+                }
+            }
+            return cursorMappings[0];
         }
     }
 }

@@ -13,12 +13,16 @@ namespace RR.Combat
         [SerializeField] bool isRightHanded;
         [SerializeField] Projectile projectile = null;
 
+        //Used for determining if item can be dropped
+        public static bool isEquipped = false;
+
         public void Spawn(Transform rightHand, Transform leftHand,Animator anim)
         {
             if (equippedPrefab != null)
             {
                 Transform handTransform = GetTransform(rightHand, leftHand);
                 Instantiate(equippedPrefab, handTransform);
+                isEquipped = true;
             }
             if (_animatorOverride != null)
             {
@@ -55,6 +59,21 @@ namespace RR.Combat
         public float GetDamage()
         {
             return _weaponDamage;
+        }
+
+        
+        //This will be called by the new weapon being picked up
+        void Drop()
+        {
+            if(isEquipped)
+            {
+                //Drop only is player picks up another weapon.
+                //Spawn a prefab without pickup script
+                //Enable rigidbody to allow it to fall
+                
+                ///OntriggerExit will then spawn the real pickup 
+                //in its place when the player leaves trigger
+            }
         }
     }
 }

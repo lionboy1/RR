@@ -20,6 +20,7 @@ namespace RR.Control
 
         [Range(0,1)]//This limits the range of the patrolSpeedFraction value below.
         [SerializeField] float patrolSpeedFraction = 0.2f;//Percent of max speed in Mover.cs to apply for waling.
+        [SerializeField] float shoutDistance = 5f;
         Mover _mover;
         Fighter _fighter;
         GameObject player;
@@ -140,6 +141,21 @@ namespace RR.Control
             _mover.MoveTo(player.transform.position, 1);
             _timeSinceLastSawPlayer = 0;
             _fighter.Attack(player);
+
+            AggravateNearbyEnemies();
+        }
+
+        void AggravateNearbyEnemies()
+        {
+            
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);//No direction for sphere, it surounds the GameObject.
+            foreach(RaycastHit hit in hits)
+            {
+                AIController enemy = hit.transform.GetComponent<AIController>();
+                if(enemy == null) continue;
+                //else
+                enemy.Aggravate();
+            }
         }
 
         bool IsAggravated()
