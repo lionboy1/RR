@@ -58,7 +58,7 @@ namespace RR.Combat
             AudioSource attackAudio = GetComponent<AudioSource>();
             if(attackAudio == null)
             {
-                Debug.LogError("No AudioSource found.");
+                Debug.Log("No AudioSource found.");
             }
         }
         #endregion
