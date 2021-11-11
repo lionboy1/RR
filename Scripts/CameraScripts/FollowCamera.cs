@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RR.Core
+namespace RR.CameraScripts
 {
     public class FollowCamera : MonoBehaviour
     {

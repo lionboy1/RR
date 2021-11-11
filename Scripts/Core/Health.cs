@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using RR.Saving;
 using RR.Control;
 
@@ -10,9 +11,16 @@ namespace RR.Core
         [SerializeField] AudioSource m_deathAudio;
         [SerializeField] AudioSource m_hurtAudio;
         [SerializeField] GameObject _bloodSplashEffect;
+        AIController L_aiController;
         Animator _anim;
         ActionScheduler _actionScheduler;
         bool isDead = false;
+        ///<summary>
+        ///Health slide code
+        public Slider slider;
+        public Gradient gradient;
+        public Image fill;
+        ///</summary>
 
         //Getter so other classes can query if target is dead or not
         public bool IsDead()
@@ -32,15 +40,23 @@ namespace RR.Core
             {
                 Debug.LogError("actionScheduler component not found!");
             }
+            L_aiController = GetComponent<AIController>();
+            
+            //Initialize the slider at full health
+            slider.maxValue = m_currHealth;
+            slider.value = m_currHealth;
+            //Initialize the health fill color to the color at full health(green)
+            fill.color = gradient.Evaluate(1f);
+
         }
 
-     
         public void Damage(float damage)
         {
             float L_originalHealth = m_currHealth;
             m_currHealth = Mathf.Max(m_currHealth - damage, 0);//Reduces health but not under 0
             
-            AIController L_aiController = GetComponent<AIController>();
+            slider.value = m_currHealth;
+            fill.color = gradient.Evaluate(slider.normalizedValue);
             
             if(m_currHealth < L_originalHealth)
             {
