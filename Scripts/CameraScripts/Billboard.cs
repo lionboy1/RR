@@ -8,7 +8,7 @@ namespace RR.CameraScripts
     //Add to the target canvas to make it always face the camera.
     public class Billboard : MonoBehaviour
     {
-        [SerializeField] Transform cam;
+        Transform cam;
       
         void Start()
         {
