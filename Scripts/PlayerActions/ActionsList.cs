@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class ActionsList : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class ActionsList : MonoBehaviour
         Talk,
         Smash,
         Rest,
-        Trap
+        Trap,
+        Kick
     }
 
     //Access PlayerActions enum
@@ -79,9 +81,26 @@ public class ActionsList : MonoBehaviour
                         other.transform.LookAt(this.gameObject.transform);
                         _playerAnim.SetTrigger("smash");
                         destructibles.DestroyObject();
-                        break;    
+                        break;
+                    case PlayerActions.Kick:
+                        other.transform.LookAt(this.gameObject.transform);
+                        _playerAnim.SetTrigger("kick");
+                        //Invoke("CallDestructibleFun", 0.2f);
+                        StartCoroutine(CallDestructibleFun());
+                        break;        
                 }
             }
         }    
-    }   
+    }
+
+    /*void CallDestructibleFunc()
+    {
+        destructibles.DestroyObject();
+    }*/
+
+    IEnumerator CallDestructibleFun()   
+    {
+        yield return new WaitForSeconds(0.5f);
+        destructibles.DestroyObject();
+    }
 }

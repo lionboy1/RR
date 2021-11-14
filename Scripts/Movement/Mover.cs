@@ -51,7 +51,7 @@ namespace RR.Movement
         {
              _agent.isStopped = false;
             _agent.destination = destination;
-            _agent.speed = _maxSpeed * Mathf.Clamp01(speedFraction);//Clamp01 only accepts numbers between o and 1.  This is a procetion function against large numbers.
+            _agent.speed = _maxSpeed * Mathf.Clamp01(speedFraction);//Clamp01 only accepts numbers between o and 1.  This protects against numeric overload.
         }
 
         public void Cancel() 

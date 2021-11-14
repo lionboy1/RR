@@ -54,7 +54,11 @@ namespace RR.Control
         }
         void Update()
         {
-            if(_health.IsDead()) return;
+            if(_health.IsDead())
+            {
+                SetCursor(CursorType.None);
+                return;
+            }
             if(InteractWithCombat()) return;//If clicked is enemy, attack.
             if(InteractWithMovement()) return;
             SetCursor(CursorType.None);
@@ -64,9 +68,9 @@ namespace RR.Control
     
         {
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out hit, Mathf.Infinity);
 
-            if (hasHit)
+            if (hasHit && !hit.collider.GetComponent<Blocked>())
             {
                 if(Input.GetMouseButton(0))
                 {
