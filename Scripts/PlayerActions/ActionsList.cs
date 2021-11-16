@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ActionsList : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class ActionsList : MonoBehaviour
         Smash,
         Rest,
         Trap,
-        Kick
+        Kick,
+        PickUp,
+        OpenChest,
+        OpenDoor
     }
 
     //Access PlayerActions enum
@@ -87,17 +91,19 @@ public class ActionsList : MonoBehaviour
                         _playerAnim.SetTrigger("kick");
                         //Invoke("CallDestructibleFun", 0.2f);
                         StartCoroutine(CallDestructibleFun());
-                        break;        
+                        break;
+                    case PlayerActions.PickUp:
+                        other.transform.LookAt(this.gameObject.transform);
+                        _playerAnim.SetTrigger("pickup");
+                        break;
+                    case PlayerActions.OpenChest:
+                        other.transform.LookAt(this.gameObject.transform);
+                        _playerAnim.SetTrigger("openchest");
+                        break;             
                 }
             }
         }    
     }
-
-    /*void CallDestructibleFunc()
-    {
-        destructibles.DestroyObject();
-    }*/
-
     IEnumerator CallDestructibleFun()   
     {
         yield return new WaitForSeconds(0.5f);
