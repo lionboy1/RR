@@ -4,7 +4,6 @@ public class ItemPickup : MonoBehaviour
 {
     public Item item;
 
-
     void Start()
     {
         
@@ -18,7 +17,7 @@ public class ItemPickup : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if(Input.GetKey(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             Pickup();
         }
@@ -26,7 +25,15 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup()
     {
-        Debug.Log("Picking up Sode");
-        Destroy(this.gameObject, 1.5f);
+        Debug.Log("Picking up " + item.name);
+        //Was there space in the inventory to add item?
+        bool wasPickedUp = Inventory.instance.Add(item);
+        
+        if(wasPickedUp)
+        {
+            Destroy(this.gameObject, 1.5f);
+        }
+
+        
     }
 }

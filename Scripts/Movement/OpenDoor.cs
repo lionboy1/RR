@@ -21,14 +21,13 @@ public class OpenDoor : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        
+        if(col.tag == "Player")
         {
-              if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
             {
                 Open();
             }
         }
-      
     }
 
     void OnTriggerExit(Collider colex)
@@ -37,7 +36,6 @@ public class OpenDoor : MonoBehaviour
         {
             Close();
         }
-        
     }
 
     void Open()
