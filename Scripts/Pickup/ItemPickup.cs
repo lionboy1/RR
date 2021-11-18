@@ -3,23 +3,41 @@
 public class ItemPickup : MonoBehaviour
 {
     public Item item;
+    bool inTriggerZone;
+    int keyPress = 0;
 
     void Start()
     {
-        
+        inTriggerZone = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.R) && inTriggerZone)
+        {
+            keyPress++;
+            if(keyPress == 1)
+            {
+                Pickup();
+            }
+            return;
+        }
     }
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter(Collider col)
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(col.tag == "Player")
         {
-            Pickup();
+            inTriggerZone = true;
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if(col.tag == "Player")
+        {
+            inTriggerZone = false;
         }
     }
 

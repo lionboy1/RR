@@ -1,5 +1,5 @@
 ﻿//using RR.Combat;
-using System.Collections;
+using UnityEngine.EventSystems;
 using RR.Core;
 using UnityEngine;
 using UnityEngine.AI;
@@ -61,6 +61,12 @@ namespace RR.Movement
 
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
+            //If inventory is open, avoid player movement when clicking on UI elements
+            if(EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            //Otherwise, proceed to action
             _actionScheduler.StartAction(this);//takes care of starting and stopping mover/fighter components
             MoveTo(destination, speedFraction);
         }

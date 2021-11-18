@@ -35,7 +35,7 @@ public class ActionsList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+            
     }
     void OnTriggerStay(Collider other)
     {

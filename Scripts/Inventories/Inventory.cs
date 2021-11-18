@@ -25,7 +25,6 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
     
-    
     public List<Item> items = new List<Item>();
     //How many inventory slots are available to populate
     public int space = 20;
@@ -56,10 +55,6 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

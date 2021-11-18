@@ -8,14 +8,11 @@ public class Item : ScriptableObject
     new public string name = "New Item";
     public Sprite icon = null;
     public bool isDefaultItem = false;
-    void Start()
+   
+    public virtual void Use()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Overridden by class calling this function
+        //Implement based on need per item
+        Debug.Log("Using " + name);
     }
 }
