@@ -6,6 +6,7 @@ public class ActionsList : MonoBehaviour
 {
     Animator _playerAnim;
     Destructibles destructibles;
+    int keyStrokes = 0;
     public enum PlayerActions
     {
         Fish,
@@ -43,66 +44,78 @@ public class ActionsList : MonoBehaviour
         {    
             if(Input.GetKeyDown(KeyCode.R))
             {
-                switch(playerActions)
+                keyStrokes++;
+                if(keyStrokes ==1)
                 {
-                    case PlayerActions.Fish:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("fish");
-                        break;
-                    case PlayerActions.Cook:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("cook");
-                        break;
-                    case PlayerActions.Build:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("build");
-                        break;
-                    case PlayerActions.Fire:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("fire");
-                        break;
-                    case PlayerActions.Forage:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("forage");
-                        break;
-                    case PlayerActions.Forge:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("forge");
-                        break;
-                    case PlayerActions.Talk:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("talk");
-                        break;
-                    case PlayerActions.Trap:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("trap");
-                        break;
-                    case PlayerActions.Rest:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("rest");
-                        break;
-                    case PlayerActions.Smash:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("smash");
-                        destructibles.DestroyObject();
-                        break;
-                    case PlayerActions.Kick:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("kick");
-                        //Invoke("CallDestructibleFun", 0.2f);
-                        StartCoroutine(CallDestructibleFun());
-                        break;
-                    case PlayerActions.PickUp:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("pickup");
-                        break;
-                    case PlayerActions.OpenChest:
-                        other.transform.LookAt(this.gameObject.transform);
-                        _playerAnim.SetTrigger("openchest");
-                        break;             
-                }
+                    switch(playerActions)
+                    {
+                        case PlayerActions.Fish:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("fish");
+                            break;
+                        case PlayerActions.Cook:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("cook");
+                            break;
+                        case PlayerActions.Build:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("build");
+                            break;
+                        case PlayerActions.Fire:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("fire");
+                            break;
+                        case PlayerActions.Forage:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("forage");
+                            break;
+                        case PlayerActions.Forge:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("forge");
+                            break;
+                        case PlayerActions.Talk:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("talk");
+                            break;
+                        case PlayerActions.Trap:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("trap");
+                            break;
+                        case PlayerActions.Rest:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("rest");
+                            break;
+                        case PlayerActions.Smash:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("smash");
+                            destructibles.DestroyObject();
+                            break;
+                        case PlayerActions.Kick:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("kick");
+                            //Invoke("CallDestructibleFun", 0.2f);
+                            StartCoroutine(CallDestructibleFun());
+                            break;
+                        case PlayerActions.PickUp:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("pickup");
+                            break;
+                        case PlayerActions.OpenChest:
+                            other.transform.LookAt(this.gameObject.transform);
+                            _playerAnim.SetTrigger("openchest");
+                            break;             
+                    }
+                }    
             }
         }    
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            keyStrokes = 0;
+        }
     }
     IEnumerator CallDestructibleFun()   
     {

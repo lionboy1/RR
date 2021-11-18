@@ -360,17 +360,17 @@ NavMeshAgent:
   m_GameObject: {fileID: 2631704524389872305}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 400
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0
+  m_BaseOffset: -0.08
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3910173057768199455
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1359779820096782498}
-  _maxSpeed: 2
+  _maxSpeed: 3
 --- !u!114 &7641173520834870758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,10 +429,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 6
+  m_Radius: 0.3
+  m_Height: 3
   m_Direction: 2
-  m_Center: {x: 0, y: 0.56, z: 0}
+  m_Center: {x: 0, y: 0.65, z: 0.46}
 --- !u!82 &8296172669090631503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04821f510f07ff84b874685ba4438a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 5
+  chaseDistance: 6
   _suspicionTime: 3
-  _aggroCooldownTime: 3
+  _aggroCooldownTime: 5
   _patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 3
