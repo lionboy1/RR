@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93d7fe52ebbbab4884f193c93d4d4db, type: 3}
-  m_Name: Axe
+  m_Name: WolfBite
   m_EditorClassIdentifier: 
-  _animatorOverride: {fileID: 22100000, guid: 92fd0f66272d3eb469e19914e46160eb, type: 2}
-  equippedPrefab: {fileID: 7950661497355057947, guid: d2afb2cbd626c3c4eae7d6cff8334399,
+  _animatorOverride: {fileID: 0}
+  equippedPrefab: {fileID: 849387161850335195, guid: 96e3620a59fdc89449cb9e187a0b4f68,
     type: 3}
-  weaponRange: 1
-  _weaponDamage: 50
+  weaponRange: 2
+  _weaponDamage: 20
   isRightHanded: 0
   projectile: {fileID: 0}

@@ -58,10 +58,11 @@ namespace RR.Core
             slider.value = m_currHealth;
             fill.color = gradient.Evaluate(slider.normalizedValue);
             
-            if(m_currHealth < L_originalHealth)
+            ///Handle aggravating AI from separate script when player attacks enemy
+            /*if(m_currHealth < L_originalHealth)
             {
                 L_aiController.Aggravate();//AI is hurt and gets angry at player
-            }
+            }*/
             
             if(m_currHealth == 0)
             {

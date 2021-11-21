@@ -173,14 +173,8 @@ namespace RR.Combat
             else
             {
                 target.Damage(_currentWeapon.GetDamage());
+                Debug.Log("Calling Hit()");
             }
         }
-        
-        //Animation event
-        /*public void ResetPickupTrigger()
-        {
-            _anim.ResetTrigger("Pickup");
-        }*/
-        
     }
 }

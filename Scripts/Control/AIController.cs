@@ -73,7 +73,6 @@ namespace RR.Control
             if (IsAggravated() && _fighter.CanAttack(player))
             {
                 AttackBehavior();
-                Debug.Log("attacking");
             }
             else if (_timeSinceLastSawPlayer < _suspicionTime)
             {
