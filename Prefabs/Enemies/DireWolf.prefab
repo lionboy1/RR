@@ -976,10 +976,10 @@ GameObject:
   - component: {fileID: 8708707183738527781}
   - component: {fileID: 1797553447663902770}
   - component: {fileID: 2084744390893454794}
-  - component: {fileID: 7764399594199958961}
   - component: {fileID: 8468870300630576324}
   - component: {fileID: 8348624610356122206}
   - component: {fileID: -4016772045989251376}
+  - component: {fileID: 4000803489425957856}
   m_Layer: 0
   m_Name: DireWolf
   m_TagString: Untagged
@@ -1018,7 +1018,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 800
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4656005318457881763}
-  _maxSpeed: 3.7
+  _maxSpeed: 5
 --- !u!114 &1797553447663902770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,26 +1119,6 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 310839192838506268}
---- !u!114 &7764399594199958961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558578666929653424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04821f510f07ff84b874685ba4438a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseDistance: 6
-  _suspicionTime: 2
-  _aggroCooldownTime: 2
-  _patrolPath: {fileID: 0}
-  waypointTolerance: 1
-  waypointDwellTime: 3
-  patrolSpeedFraction: 0.2
-  shoutDistance: 5
 --- !u!95 &8468870300630576324
 Animator:
   serializedVersion: 3
@@ -1268,6 +1248,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4000803489425957856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558578666929653424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccadcb5bf6826da47891b0b80e0e2d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
+  _suspicionTime: 5
+  _aggroCooldownTime: 5
+  _patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
+  patrolSpeedFraction: 0.18
+  shoutDistance: 0
 --- !u!1 &8711359723535287739
 GameObject:
   m_ObjectHideFlags: 0

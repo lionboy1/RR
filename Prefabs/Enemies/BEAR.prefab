@@ -717,17 +717,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3202820001600823800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04821f510f07ff84b874685ba4438a01, type: 3}
+  m_Script: {fileID: 11500000, guid: ccadcb5bf6826da47891b0b80e0e2d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 10
-  _suspicionTime: 10
-  _aggroCooldownTime: 10
+  chaseDistance: 5
+  _suspicionTime: 5
+  _aggroCooldownTime: 5
   _patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 3
-  patrolSpeedFraction: 0.2
-  shoutDistance: 5
+  patrolSpeedFraction: 0.18
+  shoutDistance: 10
 --- !u!1 &3216241955088528330
 GameObject:
   m_ObjectHideFlags: 0

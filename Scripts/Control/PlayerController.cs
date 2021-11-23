@@ -87,7 +87,7 @@ namespace RR.Control
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
 
-        bool InteractWithCombat()
+        public bool InteractWithCombat()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             //Check to see what was hit

@@ -14,7 +14,7 @@ namespace RR.Combat
         [SerializeField]
         float timeBetweenAttacks = 1.0f;
         float timeSinceLastAttack = Mathf.Infinity;//Starts as if already happened, so character can do the first attack immediately.
-        Health target;
+        public Health target;
         Mover _mover;
         Animator _anim;
         [SerializeField] AudioSource attackAudio;
@@ -102,14 +102,12 @@ namespace RR.Combat
             return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
         }
 
-        //Since the playe and AI share the fighter class, the player cannot
+        //Since the player and AI share the fighter class, the player cannot
         //have a CombatTarget component, so the GameObject argument is used instead
         public void Attack(GameObject combatTarget)
         {
             _actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
-            //Don't need these anymore.  Damage is called in Hit() below.
-            //target.GetComponent<Health>().Damage(50f);
             if(aggressiveShoutsTime > timeToShoutAgain)
             {
                 attackAudio.Play();
