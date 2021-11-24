@@ -2,6 +2,7 @@ using UnityEngine;
 using RR.Movement;
 using RR.Combat;
 using RR.Core;
+using RR.Environment;
 using System.Collections.Generic;
 
 namespace RR.Control
@@ -20,16 +21,17 @@ namespace RR.Control
 
         [Range(0,1)]//This limits the range of the patrolSpeedFraction value below.
         [SerializeField] float patrolSpeedFraction = 0.2f;//Percent of max speed in Mover.cs to apply for waling.
-        [SerializeField] float shoutDistance;
+        [SerializeField] protected float shoutDistance;
         Mover _mover;
         Fighter _fighter;
         PlayerController _playerController;
 
-        [SerializeField] protected GameObject player;
+        [SerializeField] public GameObject player;
         // [SerializeField] protected List<GameObject> closestPlayer = new List<GameObject>();
 
         [SerializeField] protected GameObject[] attackablesPC;
-        [SerializeField] protected GameObject[] attackablesNPC;
+        [SerializeField] protected GameObject[] attackableBuildings;
+        [SerializeField] protected GameObject[] attackableNPC;
 
         Health _health;
         Vector3 _guardPosition;
@@ -38,6 +40,8 @@ namespace RR.Control
         protected float timeSinceAggravated = Mathf.Infinity;
         int currentWaypointIndex = 0;//Start at waypoint 1
         ActionScheduler _actionScheduler;
+        CharacterClasses characterClasses;
+
         #region
         void Awake()
         {
@@ -55,6 +59,11 @@ namespace RR.Control
             {
                 Debug.LogError("Fighter component not found!");
             }
+            _health = GetComponent<Health>();
+            if(_health == null)
+            {
+                Debug.LogError("Health component not found");
+            }
 
 
             /*player = GameObject.FindWithTag("Player");
@@ -62,14 +71,9 @@ namespace RR.Control
             {
                 Debug.LogError("Player game object not found");
             }*/
-            attackablesPC = GameObject.FindGameObjectsWithTag("Player");
-            attackablesNPC = GameObject.FindGameObjectsWithTag("NPC");
             
-            _health = GetComponent<Health>();
-            if(_health == null)
-            {
-                Debug.LogError("Health component not found");
-            }
+            
+            
             _actionScheduler = GetComponent<ActionScheduler>();
             if(_actionScheduler == null)
             {
@@ -77,7 +81,17 @@ namespace RR.Control
             }
             //Define a random enemy to avoid errors
             //this will update based on nearest enemy calculations in EnemyFindClosestPlayerToAttack()
+            
+        }
+
+        void Start()
+        {
+            attackablesPC = GameObject.FindGameObjectsWithTag("Player");
             player = attackablesPC[Random.Range(0, 1)];
+            
+            
+            attackableBuildings = GameObject.FindGameObjectsWithTag("Building");
+            attackableNPC = GameObject.FindGameObjectsWithTag("NPC");
         }
 
         #endregion
@@ -85,7 +99,7 @@ namespace RR.Control
         private void Update()
         {
             if (_health.IsDead()) return;
-            if (IsAggravated() && _fighter.CanAttack(player))
+            if (IsAggravated() && _fighter.CanAttack(player) || IsAggravated() && _fighter.CanAttackObject(player))
             {
                 AttackBehavior();
             }
@@ -111,34 +125,31 @@ namespace RR.Control
             foreach(GameObject pcClosest in attackablesPC)
             {
                 float dist = Vector3.Distance(this.transform.position, pcClosest.transform.position);
+                
+                if(dist < chaseDistance)
                 {
-                    if(dist < chaseDistance)
+                    //The player is whatever the closest go is
+                    if(pcClosest.GetComponent<PlayerController>().InteractWithCombat() || (int)pcClosest.GetComponent<CharacterClasses>().nPC != (int)this.GetComponent<CharacterClasses>().nPC )
                     {
-                        //The player is whatever the closest go is
-                        
-                        if(pcClosest.GetComponent<PlayerController>().InteractWithCombat())
-                        {
-                            player = pcClosest;
-                            Health newTargetPC  = pcClosest.GetComponent<Health>();
-                            _fighter.target = newTargetPC;
-                            _fighter.CanAttack(pcClosest);
-                        }
+                        Health newTargetPC  = pcClosest.GetComponent<Health>();
+                        _fighter.target = newTargetPC;
+                        _fighter.CanAttack(pcClosest);
+                        player = pcClosest;
                     }
-                    /*else if(dist > chaseDistance)
+                    else
                     {
-                        foreach(GameObject npcClosest in attackablesNPC)
+                        foreach(GameObject npc in attackableNPC)
                         {
-                            if(dist < chaseDistance )
+                            float npcDist = Vector3.Distance(this.transform.position, npc.transform.position);
+                            if(npcDist < chaseDistance)
                             {
-                                player = npcClosest;
-                                Health newTargetNPC  = npcClosest.GetComponent<Health>();
+                                Health newTargetNPC = npc.GetComponent<Health>();
                                 _fighter.target = newTargetNPC;
-                                _fighter.CanAttack(npcClosest);
-                                
-                                
+                                _fighter.CanAttack(npc);
+                                player = npc;
                             }
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -227,7 +238,7 @@ namespace RR.Control
 
         //Option 1. Make this virtual so only similar species can call each other for help
         //Option 2. Try using an enum to set species then they only call to each other.
-        void AggravateNearbyEnemies()
+        public virtual void AggravateNearbyEnemies()
         {
             
             RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);//No direction for sphere, it surounds the GameObject.

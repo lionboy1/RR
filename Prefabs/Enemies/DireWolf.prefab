@@ -980,6 +980,8 @@ GameObject:
   - component: {fileID: 8348624610356122206}
   - component: {fileID: -4016772045989251376}
   - component: {fileID: 4000803489425957856}
+  - component: {fileID: 1501332681}
+  - component: {fileID: 1501332671}
   m_Layer: 0
   m_Name: DireWolf
   m_TagString: Untagged
@@ -1018,7 +1020,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 800
-  m_StoppingDistance: 1
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1065,6 +1067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
+  target: {fileID: 0}
+  worldStructuresComponent: {fileID: 0}
   attackAudio: {fileID: -4016772045989251376}
   defaultWeapon: {fileID: 11400000, guid: 553c7dd8aef98eb488628f31d49eabc7, type: 2}
   rightHandTransform: {fileID: 942320194756093906}
@@ -1267,7 +1271,40 @@ MonoBehaviour:
   waypointTolerance: 1
   waypointDwellTime: 3
   patrolSpeedFraction: 0.18
-  shoutDistance: 0
+  shoutDistance: 5
+  player: {fileID: 0}
+  attackablesPC: []
+  attackableBuildings: []
+  attackableNPC: []
+--- !u!54 &1501332681
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558578666929653424}
+  serializedVersion: 2
+  m_Mass: 20
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1501332671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558578666929653424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4b6b5a288e0c438ba683e64c0238e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: 0
 --- !u!1 &8711359723535287739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1680,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouth
       objectReference: {fileID: 0}
+    - target: {fileID: 4761971393286053998, guid: 96e3620a59fdc89449cb9e187a0b4f68,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}
       propertyPath: m_RootOrder
@@ -1650,18 +1692,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1898936
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.174
+      value: 0.176
       objectReference: {fileID: 0}
     - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081988435344015874, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}

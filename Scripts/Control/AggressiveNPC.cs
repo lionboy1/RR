@@ -13,5 +13,23 @@ namespace RR.Control
             //Check if aggravation timer has expired
             return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
         }
+        public override void AggravateNearbyEnemies()
+        {
+            
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);//No direction for sphere, it surounds the GameObject.
+            foreach(RaycastHit hit in hits)
+            {
+                AIController enemy = hit.transform.GetComponent<AIController>();
+                CharacterClasses npcClass = hit.transform.GetComponent<CharacterClasses>();
+                if(enemy == null) continue;
+                //else
+                if( (int)npcClass.nPC == (int)this.GetComponent<CharacterClasses>().nPC)
+                {
+                    Debug.Log("Calling help ");
+                    enemy.Aggravate();
+                }
+                // enemy.Aggravate();
+            }
+        }
     }
 }

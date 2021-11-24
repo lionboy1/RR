@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 4608014084449636834}
   - component: {fileID: 6236385241478005981}
   - component: {fileID: 975566173498674090}
+  - component: {fileID: 877168819}
   m_Layer: 0
   m_Name: Crone
   m_TagString: Untagged
@@ -401,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1995042766026520105}
-  _maxSpeed: 5
+  _maxSpeed: 3
 --- !u!114 &496196009049822921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
+  target: {fileID: 0}
+  worldStructuresComponent: {fileID: 0}
   attackAudio: {fileID: 4608014084449636834}
   defaultWeapon: {fileID: 11400000, guid: 553c7dd8aef98eb488628f31d49eabc7, type: 2}
   rightHandTransform: {fileID: 2954293909535653303}
@@ -537,7 +540,11 @@ MonoBehaviour:
   waypointTolerance: 1
   waypointDwellTime: 3
   patrolSpeedFraction: 0.2
-  shoutDistance: 10
+  shoutDistance: 5
+  player: {fileID: 0}
+  attackablesPC: []
+  attackableBuildings: []
+  attackableNPC: []
 --- !u!95 &975566173498674090
 Animator:
   serializedVersion: 3
@@ -557,6 +564,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &877168819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995042766026877449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4b6b5a288e0c438ba683e64c0238e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: 7
 --- !u!1 &1995042766026877451
 GameObject:
   m_ObjectHideFlags: 0

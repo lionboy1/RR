@@ -1,6 +1,7 @@
 using UnityEngine;
 using RR.Movement;
 using RR.Core;
+using RR.Environment;
 using RR.Control;
 using System.Collections;
 
@@ -15,6 +16,7 @@ namespace RR.Combat
         float timeBetweenAttacks = 1.0f;
         float timeSinceLastAttack = Mathf.Infinity;//Starts as if already happened, so character can do the first attack immediately.
         public Health target;
+        public WorldStructuresComponent worldStructuresComponent;
         Mover _mover;
         Animator _anim;
         [SerializeField] AudioSource attackAudio;
@@ -101,6 +103,21 @@ namespace RR.Combat
             //However, still check to see if it is dead or alive
             return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
         }
+        #region 
+        ///<summary>
+        ///This additional function for PC and NPC
+        /// to attack inanimate objects
+        ///</summary>
+        public bool CanAttackObject(GameObject combatObject)
+        {
+            if(combatObject == null) return false;
+            WorldStructuresComponent targetToCheck = combatObject.GetComponent<WorldStructuresComponent>();
+            //Now that the attackable structure target is found, it is not null
+            return targetToCheck;
+        }
+        #endregion
+
+
 
         //Since the player and AI share the fighter class, the player cannot
         //have a CombatTarget component, so the GameObject argument is used instead
