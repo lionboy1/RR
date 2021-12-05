@@ -103,21 +103,6 @@ namespace RR.Combat
             //However, still check to see if it is dead or alive
             return targetToCheck && !targetToCheck.IsDead();//Is IsDead is actually true, then it won't proceed to attack target.
         }
-        #region 
-        ///<summary>
-        ///This additional function for PC and NPC
-        /// to attack inanimate objects
-        ///</summary>
-        public bool CanAttackObject(GameObject combatObject)
-        {
-            if(combatObject == null) return false;
-            WorldStructuresComponent targetToCheck = combatObject.GetComponent<WorldStructuresComponent>();
-            //Now that the attackable structure target is found, it is not null
-            return targetToCheck;
-        }
-        #endregion
-
-
 
         //Since the player and AI share the fighter class, the player cannot
         //have a CombatTarget component, so the GameObject argument is used instead
@@ -155,7 +140,6 @@ namespace RR.Combat
                 //target.Damage(_currentWeapon.GetDamage());
             }
         }
-
         private void TriggerAttack()
         {
             _anim.ResetTrigger("stopAttack");//resets trigger
@@ -170,7 +154,6 @@ namespace RR.Combat
             Invoke("StopPickup", 2);
             
         }
-
         void StopPickup()
         {
             _anim.SetTrigger("StopPickup");

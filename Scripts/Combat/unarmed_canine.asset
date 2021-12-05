@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93d7fe52ebbbab4884f193c93d4d4db, type: 3}
-  m_Name: Unarmed
+  m_Name: unarmed_canine
   m_EditorClassIdentifier: 
-  _animatorOverride: {fileID: 22100000, guid: 3525655f61906354abf35194218dbfa7, type: 2}
-  equippedPrefab: {fileID: 0}
-  weaponRange: 1
-  _weaponDamage: 100
+  _animatorOverride: {fileID: 0}
+  equippedPrefab: {fileID: 849387161850335195, guid: 96e3620a59fdc89449cb9e187a0b4f68,
+    type: 3}
+  weaponRange: 2
+  _weaponDamage: 0
   isRightHanded: 0
   projectile: {fileID: 0}

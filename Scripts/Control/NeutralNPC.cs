@@ -11,7 +11,7 @@ namespace RR.Control
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             //Check if aggravation timer has expired
-            return distanceToPlayer < chaseDistance && timeSinceAggravated <_aggroCooldownTime;
+            return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
         }
     }
 }

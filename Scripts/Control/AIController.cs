@@ -99,9 +99,10 @@ namespace RR.Control
         private void Update()
         {
             if (_health.IsDead()) return;
-            if (IsAggravated() && _fighter.CanAttack(player) || IsAggravated() && _fighter.CanAttackObject(player))
+            if (IsAggravated() && _fighter.CanAttack(player))
             {
                 AttackBehavior();
+                // SuspicionBehavior();
             }
             else if (_timeSinceLastSawPlayer < _suspicionTime)
             {
@@ -113,45 +114,38 @@ namespace RR.Control
                 PatrolBehavior();//will automaticall cancel current action.
             }
             UpdateTimers();
-            EnemyFindClosestPlayerToAttack();
+            // EnemyFindClosestPlayerToAttack();
+            FindClosestTargetToAttack();
         }
-
-
-        //WIP - find closest go tagged "Player"
-        //currently other gos tagges as "Player" are detected, however...
-        //when they are attacked the damage still transfers to the main player character..needs fixing
-        void EnemyFindClosestPlayerToAttack()
+        void FindClosestTargetToAttack()
         {
-            foreach(GameObject pcClosest in attackablesPC)
+            if (Vector3.Distance(player.transform.position, transform.position) < chaseDistance && _fighter.CanAttack(player))
             {
-                float dist = Vector3.Distance(this.transform.position, pcClosest.transform.position);
-                
-                if(dist < chaseDistance)
+                _mover.MoveTo(player.transform.position, 1);
+                _fighter.Attack(player);
+                // return true;
+            }
+
+            GameObject candidate = null;
+            float distance = chaseDistance;
+            foreach (GameObject attackable in attackableNPC)
+            {
+                if (attackable == gameObject) continue;
+                float dist = Vector3.Distance(attackable.transform.position, transform.position);
+                if (dist < distance && _fighter.CanAttack(attackable))
                 {
-                    //The player is whatever the closest go is
-                    if(pcClosest.GetComponent<PlayerController>().InteractWithCombat() || (int)pcClosest.GetComponent<CharacterClasses>().nPC != (int)this.GetComponent<CharacterClasses>().nPC )
-                    {
-                        Health newTargetPC  = pcClosest.GetComponent<Health>();
-                        _fighter.target = newTargetPC;
-                        _fighter.CanAttack(pcClosest);
-                        player = pcClosest;
-                    }
-                    else
-                    {
-                        foreach(GameObject npc in attackableNPC)
-                        {
-                            float npcDist = Vector3.Distance(this.transform.position, npc.transform.position);
-                            if(npcDist < chaseDistance)
-                            {
-                                Health newTargetNPC = npc.GetComponent<Health>();
-                                _fighter.target = newTargetNPC;
-                                _fighter.CanAttack(npc);
-                                player = npc;
-                            }
-                        }
-                    }
+                    candidate = attackable;
+                    distance = dist;
                 }
             }
+
+            if (candidate != null)
+            {
+                _mover.MoveTo(candidate.transform.position, 1);
+                _fighter.Attack(candidate);
+                // return true;
+            }
+            // return false;
         }
 
         //Can call this directly on neutral npcs
@@ -169,6 +163,28 @@ namespace RR.Control
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             //Check if aggravation timer has expired
             return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
+        }
+         void AttackBehavior()
+        {
+            _mover.MoveTo(player.transform.position, 1);
+            //Reset time since just saw before attacking.
+            _timeSinceLastSawPlayer = 0;
+            _fighter.Attack(player);
+
+            AggravateNearbyEnemies();
+        }
+
+        public virtual void AggravateNearbyEnemies()
+        {
+            
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);//No direction for sphere, it surounds the GameObject.
+            foreach(RaycastHit hit in hits)
+            {
+                AIController enemy = hit.transform.GetComponent<AIController>();
+                if(enemy == null) continue;
+                //else
+                enemy.Aggravate();
+            }
         }
 
         private void UpdateTimers()
@@ -224,32 +240,7 @@ namespace RR.Control
             return distanceToWaypoint < waypointTolerance;//Return true only when within range.
         }
 
-        void AttackBehavior()
-        {
-            
-            // EnemyFindClosestPlayerToAttack();
-            _mover.MoveTo(player.transform.position, 1);
-            //Reset time since just saw before attacking.
-            _timeSinceLastSawPlayer = 0;
-            _fighter.Attack(player);
-
-            AggravateNearbyEnemies();
-        }
-
-        //Option 1. Make this virtual so only similar species can call each other for help
-        //Option 2. Try using an enum to set species then they only call to each other.
-        public virtual void AggravateNearbyEnemies()
-        {
-            
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);//No direction for sphere, it surounds the GameObject.
-            foreach(RaycastHit hit in hits)
-            {
-                AIController enemy = hit.transform.GetComponent<AIController>();
-                if(enemy == null) continue;
-                //else
-                enemy.Aggravate();
-            }
-        }
+       
 
         
         //Called by Unity

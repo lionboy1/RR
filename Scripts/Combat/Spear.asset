@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93d7fe52ebbbab4884f193c93d4d4db, type: 3}
   m_Name: Spear
   m_EditorClassIdentifier: 
-  _animatorOverride: {fileID: 0}
-  equippedPrefab: {fileID: 0}
+  _animatorOverride: {fileID: 22100000, guid: dd78d099122d5664ea1e5bb79798d2e4, type: 2}
+  equippedPrefab: {fileID: 2454137616612288304, guid: 4604461db5bb26041b8fec9602b443dd,
+    type: 3}
   weaponRange: 2
-  _weaponDamage: 0
-  isRightHanded: 0
+  _weaponDamage: 50
+  isRightHanded: 1
   projectile: {fileID: 0}

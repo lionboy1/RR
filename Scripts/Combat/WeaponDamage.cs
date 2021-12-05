@@ -17,7 +17,7 @@ namespace RR.Combat
 
         void OnTriggerEnter(Collider col)
         {
-            if(col.tag == "Player")
+            if(col.tag == "Player" || col.tag == "NPC")
             {
                 //call damage on player
                 // playerFighterComp.Hit();
