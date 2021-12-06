@@ -5,11 +5,12 @@ using RR.Core;
 
 namespace RR.Combat
 {
-    public class WeaponDamage : MonoBehaviour
+    public class NeutralWeaponDamage : MonoBehaviour
     {
         [SerializeField] float damageAmount;
 
         // Update is called once per frame
+
         void Update()
         {
 
@@ -17,13 +18,11 @@ namespace RR.Combat
 
         void OnTriggerEnter(Collider col)
         {
-            if(col.tag == "Player" || col.tag == "NPC")
+            /*if(col.tag == "Player" || col.tag == "Enemy"  )
             {
-                //call damage on player
-                // playerFighterComp.Hit();
                 col.GetComponent<Health>().Damage(damageAmount);
-                // playerHealth.Damage(damageAmount);
-            }
+            }*/
+            col.GetComponent<Health>().Damage(damageAmount);
         }
     }
 }    

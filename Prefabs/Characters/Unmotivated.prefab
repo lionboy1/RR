@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530300153498710}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530300220396150}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923515}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818530301272923479}
   - component: {fileID: 818530301278096437}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: barbarian_cloth_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818530301272923461}
   - component: {fileID: 818530301278096435}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: barbarian_hair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818530301272923405}
   - component: {fileID: 818530301278096433}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: barbarian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923459}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,13 +438,16 @@ GameObject:
   - component: {fileID: 818530301272786835}
   - component: {fileID: 818530301272786834}
   - component: {fileID: 818530301272786829}
-  - component: {fileID: 818530301272786828}
   - component: {fileID: 818530301272786831}
   - component: {fileID: 818530301272786830}
   - component: {fileID: 3388624911078846106}
-  m_Layer: 0
+  - component: {fileID: 1357854867}
+  - component: {fileID: 1357854865}
+  - component: {fileID: 1357854866}
+  - component: {fileID: 4378743641574497860}
+  m_Layer: 16
   m_Name: Unmotivated
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,6 +504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
+  target: {fileID: 0}
+  worldStructuresComponent: {fileID: 0}
   attackAudio: {fileID: 3388624911078846106}
   defaultWeapon: {fileID: 11400000, guid: 277b30e693091bb4cb38a75dce7c9e55, type: 2}
   rightHandTransform: {fileID: 818530300220396150}
@@ -544,26 +549,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &818530301272786828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818530301272883355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04821f510f07ff84b874685ba4438a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseDistance: 5
-  _suspicionTime: 10
-  _aggroCooldownTime: 10
-  _patrolPath: {fileID: 0}
-  waypointTolerance: 1
-  waypointDwellTime: 3
-  patrolSpeedFraction: 0.2
-  shoutDistance: 5
 --- !u!114 &818530301272786831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,7 +576,8 @@ MonoBehaviour:
   m_currHealth: 100
   m_deathAudio: {fileID: 3388624911078846106}
   m_hurtAudio: {fileID: 3388624911078846106}
-  _bloodSplashEffect: {fileID: 0}
+  _bloodSplashEffect: {fileID: 2360933683143488451, guid: 730678b8a5330c449ada55bde83402ce,
+    type: 3}
   slider: {fileID: 1084332190922323699}
   gradient:
     serializedVersion: 2
@@ -719,6 +705,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &1357854867
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818530301272883355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.99, z: 0}
+--- !u!114 &1357854865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818530301272883355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4b6b5a288e0c438ba683e64c0238e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: 10
+--- !u!114 &1357854866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818530301272883355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d4525cb3d9364081108ebea092d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4378743641574497860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818530301272883355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccadcb5bf6826da47891b0b80e0e2d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
+  _suspicionTime: 5
+  _aggroCooldownTime: 5
+  _patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
+  patrolSpeedFraction: 0.18
+  shoutDistance: 10
+  player: {fileID: 0}
+  candidate: {fileID: 0}
+  attackablesPC: []
+  attackableBuildings: []
+  attackableNPC: []
 --- !u!1 &818530301272883489
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923393}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianSpine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923395}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianSpine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923397}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923399}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923401}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianNeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923403}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +973,7 @@ GameObject:
   - component: {fileID: 818530301272923407}
   - component: {fileID: 818530301275823409}
   - component: {fileID: 818530301274824689}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: barbarian_axe_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1003,7 +1053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923441}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923409}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923411}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923413}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,7 +1176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923415}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923417}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923419}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1219,7 +1269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923421}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1250,7 +1300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923423}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianSpine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1281,7 +1331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923429}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923431}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923433}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923435}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923437}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1436,7 +1486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923439}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1467,7 +1517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923473}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1497,7 +1547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923475}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barbarian_weaponL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1527,7 +1577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923443}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923445}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: bon_gob_war_jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923447}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1620,7 +1670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923451}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLCollarbone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1651,7 +1701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923453}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLUpperarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,7 +1732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923455}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1713,7 +1763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923425}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit11 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,7 +1794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923427}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLDigit12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1775,7 +1825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923467}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRCollarbone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1806,7 +1856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923469}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRUpperarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1837,7 +1887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923471}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit11 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1868,7 +1918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923505}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1898,7 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923507}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,7 +1979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923509}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: bon_gob_war_face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1959,7 +2009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923511}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barbarian_weaponR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1990,7 +2040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923513}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRDigit32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818530301272923463}
   - component: {fileID: 818530301278096439}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: barbarian_boot_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,7 +2160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923481}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barbariancloth_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2140,7 +2190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923483}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barbariancloth_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2170,7 +2220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923485}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2201,7 +2251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923487}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2232,7 +2282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923457}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianLThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2263,7 +2313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818530301272923465}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BarbarianRForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2292,15 +2342,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818530301272923449}
     m_Modifications:
+    - target: {fileID: 310839191563326536, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 310839191563326537, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 310839191702293410, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 310839191982108524, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}
       propertyPath: m_Name
       value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 310839191982108524, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 310839191982108525, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}

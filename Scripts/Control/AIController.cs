@@ -11,6 +11,7 @@ namespace RR.Control
     [RequireComponent(typeof(ActionScheduler))]
     public abstract class AIController : MonoBehaviour 
     {
+        #region
         [SerializeField] protected float chaseDistance;
         [SerializeField] protected float _suspicionTime;
         //Make the aggro time higher than suspicion time
@@ -27,6 +28,7 @@ namespace RR.Control
         PlayerController _playerController;
 
         [SerializeField] public GameObject player;
+        [SerializeField] public GameObject candidate;
         // [SerializeField] protected List<GameObject> closestPlayer = new List<GameObject>();
 
         [SerializeField] protected GameObject[] attackablesPC;
@@ -41,6 +43,7 @@ namespace RR.Control
         int currentWaypointIndex = 0;//Start at waypoint 1
         ActionScheduler _actionScheduler;
         CharacterClasses characterClasses;
+        #endregion
 
         #region
         void Awake()
@@ -64,16 +67,6 @@ namespace RR.Control
             {
                 Debug.LogError("Health component not found");
             }
-
-
-            /*player = GameObject.FindWithTag("Player");
-            if(player == null)
-            {
-                Debug.LogError("Player game object not found");
-            }*/
-            
-            
-            
             _actionScheduler = GetComponent<ActionScheduler>();
             if(_actionScheduler == null)
             {
@@ -99,10 +92,14 @@ namespace RR.Control
         private void Update()
         {
             if (_health.IsDead()) return;
+            
             if (IsAggravated() && _fighter.CanAttack(player))
             {
                 AttackBehavior();
-                // SuspicionBehavior();
+            }
+            else if(FindClosestTargetToAttack())
+            {
+                //Attack each other
             }
             else if (_timeSinceLastSawPlayer < _suspicionTime)
             {
@@ -115,38 +112,37 @@ namespace RR.Control
             }
             UpdateTimers();
             // EnemyFindClosestPlayerToAttack();
-            FindClosestTargetToAttack();
         }
-        void FindClosestTargetToAttack()
-        {
-            if (Vector3.Distance(player.transform.position, transform.position) < chaseDistance && _fighter.CanAttack(player))
+            bool FindClosestTargetToAttack()
             {
-                _mover.MoveTo(player.transform.position, 1);
-                _fighter.Attack(player);
-                // return true;
-            }
-
-            GameObject candidate = null;
-            float distance = chaseDistance;
-            foreach (GameObject attackable in attackableNPC)
-            {
-                if (attackable == gameObject) continue;
-                float dist = Vector3.Distance(attackable.transform.position, transform.position);
-                if (dist < distance && _fighter.CanAttack(attackable))
+                /*if (Vector3.Distance(player.transform.position, transform.position) < chaseDistance && _fighter.CanAttack(player) || IsAggravated() && _fighter.CanAttack(player))
                 {
-                    candidate = attackable;
-                    distance = dist;
-                }
-            }
+                    _fighter.Attack(player);
+                    // AttackBehavior();
+                    return true;
+                }*/
 
-            if (candidate != null)
-            {
-                _mover.MoveTo(candidate.transform.position, 1);
-                _fighter.Attack(candidate);
-                // return true;
+                GameObject candidate = null;
+                float distance = chaseDistance;
+                foreach (GameObject attackable in attackableNPC)
+                {
+                    if (attackable == gameObject) continue;
+                    
+                    float dist = Vector3.Distance(attackable.transform.position, transform.position);
+                    if (dist < distance && _fighter.CanAttack(attackable))
+                    {
+                        candidate = attackable;
+                        distance = dist;
+                    }
+                }
+
+                if (candidate != null)
+                {
+                    _fighter.Attack(candidate);
+                    return true;
+                }
+                return false;
             }
-            // return false;
-        }
 
         //Can call this directly on neutral npcs
         //who should only attack when attacked first
@@ -169,9 +165,10 @@ namespace RR.Control
             _mover.MoveTo(player.transform.position, 1);
             //Reset time since just saw before attacking.
             _timeSinceLastSawPlayer = 0;
+            Debug.Log("Attacking "+ player.name);
             _fighter.Attack(player);
 
-            AggravateNearbyEnemies();
+            // AggravateNearbyEnemies();
         }
 
         public virtual void AggravateNearbyEnemies()

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6242300873680106854}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8829422328972580070}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8398081786462429910}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 960638907547599061}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1778448478903808479}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3300988425286152337}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2129370875148932883}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5504326439935317013}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1934414249579794613}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3701836872580368905}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3215481364168192875}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2854307990720963277}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4222197353394582675}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4865552304456868870}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7343084794753441637}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6825255180678356507}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9219120036636049918}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9072317884371235456}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8964084299539643256}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7561953290644265529}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8883642752782928491}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Neck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3050327267960467745}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2613177150452112373}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5294059464598357482}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 686577189876691327}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Tail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465704964389648516}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173079848939048752}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Tail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9037406446583308930}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8995741443906879193}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 942320194756093906}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,7 +941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1808208320247030605}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ Queue de cheval 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,11 +980,11 @@ GameObject:
   - component: {fileID: 8348624610356122206}
   - component: {fileID: -4016772045989251376}
   - component: {fileID: 4000803489425957856}
-  - component: {fileID: 1501332681}
   - component: {fileID: 1501332671}
-  m_Layer: 0
+  - component: {fileID: 2096526147}
+  m_Layer: 16
   m_Name: DireWolf
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4656005318457881763}
-  _maxSpeed: 5
+  _maxSpeed: 3
 --- !u!114 &1797553447663902770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   target: {fileID: 0}
   worldStructuresComponent: {fileID: 0}
   attackAudio: {fileID: -4016772045989251376}
-  defaultWeapon: {fileID: 11400000, guid: 553c7dd8aef98eb488628f31d49eabc7, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: ed2be6e807c62d64587900fdd59388d5, type: 2}
   rightHandTransform: {fileID: 942320194756093906}
   leftHandTransform: {fileID: 3232674026778648271}
   arrowPos: {fileID: 0}
@@ -1091,7 +1091,8 @@ MonoBehaviour:
   m_currHealth: 100
   m_deathAudio: {fileID: -4016772045989251376}
   m_hurtAudio: {fileID: -4016772045989251376}
-  _bloodSplashEffect: {fileID: 0}
+  _bloodSplashEffect: {fileID: 2360933683143488451, guid: 730678b8a5330c449ada55bde83402ce,
+    type: 3}
   slider: {fileID: 310839193390726200}
   gradient:
     serializedVersion: 2
@@ -1273,25 +1274,10 @@ MonoBehaviour:
   patrolSpeedFraction: 0.18
   shoutDistance: 5
   player: {fileID: 0}
+  candidate: {fileID: 0}
   attackablesPC: []
   attackableBuildings: []
   attackableNPC: []
---- !u!54 &1501332681
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558578666929653424}
-  serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1501332671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,6 +1291,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nPC: 0
+--- !u!114 &2096526147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558578666929653424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d4525cb3d9364081108ebea092d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8711359723535287739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754018909645227665}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5434156353637717207}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1376,7 +1374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3232674026778648271}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4575572758430332253}
   - component: {fileID: 6453812305773746454}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: STANDARD_WOLF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1521,15 +1519,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4656005318457881763}
     m_Modifications:
+    - target: {fileID: 310839191563326536, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 310839191563326537, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 310839191702293410, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 310839191982108524, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}
       propertyPath: m_Name
       value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 310839191982108524, guid: 3ed6c15788ef84044ab17cc6bd97017c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 310839191982108525, guid: 3ed6c15788ef84044ab17cc6bd97017c,
         type: 3}
@@ -1680,6 +1693,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouth
       objectReference: {fileID: 0}
+    - target: {fileID: 849387161850335195, guid: 96e3620a59fdc89449cb9e187a0b4f68,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4761971393286053998, guid: 96e3620a59fdc89449cb9e187a0b4f68,
         type: 3}
       propertyPath: m_Constraints
@@ -1764,6 +1782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: -0.021952722
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907309402573498955, guid: 96e3620a59fdc89449cb9e187a0b4f68,
+        type: 3}
+      propertyPath: damageAmount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e3620a59fdc89449cb9e187a0b4f68, type: 3}

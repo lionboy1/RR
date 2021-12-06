@@ -13,6 +13,7 @@ namespace RR.Control
             //Check if aggravation timer has expired
             return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
         }
+        
         public override void AggravateNearbyEnemies()
         {
             
@@ -25,7 +26,6 @@ namespace RR.Control
                 //else
                 if( (int)npcClass.nPC == (int)this.GetComponent<CharacterClasses>().nPC)
                 {
-                    Debug.Log("Calling help ");
                     enemy.Aggravate();
                 }
                 // enemy.Aggravate();
