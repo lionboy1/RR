@@ -4,6 +4,7 @@ using RR.Combat;
 using RR.Core;
 using RR.Environment;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 namespace RR.Control
 {
@@ -29,13 +30,17 @@ namespace RR.Control
 
         [SerializeField] public GameObject player;
         [SerializeField] public GameObject candidate;
+        [SerializeField] public GameObject currentHidingSpot;
+        [SerializeField] public GameObject hide;
         // [SerializeField] protected List<GameObject> closestPlayer = new List<GameObject>();
 
         [SerializeField] protected GameObject[] attackablesPC;
         [SerializeField] protected GameObject[] attackableBuildings;
         [SerializeField] protected GameObject[] attackableNPC;
+        [SerializeField] protected GameObject[] HidingPlaces;
+        CharacterClasses charClass;
 
-        Health _health;
+        protected Health _health;
         Vector3 _guardPosition;
         protected float _timeSinceLastSawPlayer = Mathf.Infinity;//Set to a long time ago so can reset for AI immediately on start;
         protected float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
@@ -85,6 +90,7 @@ namespace RR.Control
             
             attackableBuildings = GameObject.FindGameObjectsWithTag("Building");
             attackableNPC = GameObject.FindGameObjectsWithTag("NPC");
+            HidingPlaces = GameObject.FindGameObjectsWithTag("HidingSpot");
         }
 
         #endregion
@@ -92,8 +98,17 @@ namespace RR.Control
         private void Update()
         {
             if (_health.IsDead()) return;
+            /*if(RetreatBehavior())
+            {
+                //Run and hide to recover
+                // RetreatBehavior();
+            }*/
+            if(_health.LowHealth())
+            {
+                TestRetreatBehavior();
+            }
             
-            if (IsAggravated() && _fighter.CanAttack(player))
+            if (IsAggravated() && _fighter.CanAttack(player) && !_health.LowHealth())
             {
                 AttackBehavior();
             }
@@ -108,11 +123,21 @@ namespace RR.Control
             }
             else
             {
-                PatrolBehavior();//will automaticall cancel current action.
+                PatrolBehavior();//will automatically cancel current action.
             }
             UpdateTimers();
-            // EnemyFindClosestPlayerToAttack();
         }
+            
+            void TestRetreatBehavior()
+            {
+                // _mover.StartMoveAction(hide.transform.position, 1);
+                _fighter.target = null;
+                _fighter.Cancel();
+                _actionScheduler.CancelCurrentAction();
+                _mover.MoveTo(hide.transform.position, 1);
+                
+                Debug.Log("Moving..");
+            }
             bool FindClosestTargetToAttack()
             {
                 /*if (Vector3.Distance(player.transform.position, transform.position) < chaseDistance && _fighter.CanAttack(player) || IsAggravated() && _fighter.CanAttack(player))
@@ -158,14 +183,13 @@ namespace RR.Control
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             //Check if aggravation timer has expired
-            return distanceToPlayer < chaseDistance || timeSinceAggravated <_aggroCooldownTime;
+            return distanceToPlayer < chaseDistance && timeSinceAggravated <_aggroCooldownTime;
         }
          void AttackBehavior()
         {
             _mover.MoveTo(player.transform.position, 1);
             //Reset time since just saw before attacking.
             _timeSinceLastSawPlayer = 0;
-            Debug.Log("Attacking "+ player.name);
             _fighter.Attack(player);
 
             // AggravateNearbyEnemies();
@@ -193,10 +217,33 @@ namespace RR.Control
 
         //Nov 2021 update - completely new idea
         //When hurt, the npc will retreat to the nearest hideout - WIP
-        void RetreatBehavior()
+        bool RetreatBehavior()
         {
             _actionScheduler.CancelCurrentAction();
             //Then find nearest hideout
+            if(_health.LowHealth())
+            {
+                GameObject currentHidingSpot = null;
+                foreach(GameObject place in HidingPlaces)
+                {
+                    float disToHide = Vector3.Distance(place.transform.position, transform.position);
+                    if(disToHide < chaseDistance)
+                    {
+                        currentHidingSpot = place;
+                        Debug.Log("Found " + currentHidingSpot.name + " to hide");
+
+                        disToHide = chaseDistance;
+                    }
+                    if(currentHidingSpot != null)
+                    {
+                        _mover.MoveTo(currentHidingSpot.transform.position, 1);
+                        Debug.Log("Moving to " + currentHidingSpot.name);
+                        return true;
+                    }
+                }
+                // return false;
+            }
+            return false;    
         }
         private void SuspicionBehavior()
         {

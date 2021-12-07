@@ -18,11 +18,10 @@ namespace RR.Combat
 
         void OnTriggerEnter(Collider col)
         {
-            /*if(col.tag == "Player" || col.tag == "Enemy"  )
+            if(col.tag == "Player" || col.GetInstanceID() != this.gameObject.GetInstanceID()  )
             {
                 col.GetComponent<Health>().Damage(damageAmount);
-            }*/
-            col.GetComponent<Health>().Damage(damageAmount);
+            }
         }
     }
 }    

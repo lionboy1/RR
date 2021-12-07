@@ -100,7 +100,8 @@ namespace RR.Control
                 if(!_fighter.CanAttack(target.gameObject)) continue;//abort this current iteration and continue loop.
                 if(Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target.gameObject);
+                    _fighter.Attack(target.gameObject);
+                    target.gameObject.GetComponent<AIController>().Aggravate();
                 }
                 SetCursor(CursorType.Combat);
                 return true;

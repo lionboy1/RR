@@ -144,6 +144,7 @@ namespace RR.Combat
         {
             _anim.ResetTrigger("stopAttack");//resets trigger
             _anim.SetTrigger("attack");
+            Invoke("Hit", 0.2f);
         }
 
         public void EquipWeapon(Weapon weapon)
@@ -158,7 +159,8 @@ namespace RR.Combat
         {
             _anim.SetTrigger("StopPickup");
         }
-        //Animation event
+        
+        //Animation event calls Hit() or call from TriggerAttack()
         public void Hit()
         {
             if(target == null) return;
@@ -171,7 +173,6 @@ namespace RR.Combat
             else
             {
                 target.Damage(_currentWeapon.GetDamage());
-                Debug.Log("Calling Hit()");
             }
         }
     }

@@ -28,7 +28,6 @@ namespace RR.Control
                 {
                     enemy.Aggravate();
                 }
-                // enemy.Aggravate();
             }
         }
     }

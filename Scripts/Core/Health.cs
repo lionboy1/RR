@@ -50,6 +50,11 @@ namespace RR.Core
 
         }
 
+        public bool LowHealth()
+        {
+            return m_currHealth < 90;
+        }
+
         public void Damage(float damage)
         {
             float L_originalHealth = m_currHealth;
