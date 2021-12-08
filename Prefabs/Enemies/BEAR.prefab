@@ -440,9 +440,11 @@ GameObject:
   - component: {fileID: 6868938054615650391}
   - component: {fileID: 8296172668459386838}
   - component: {fileID: 8296172668459386830}
+  - component: {fileID: 1528210912}
+  - component: {fileID: 1528210913}
   m_Layer: 0
   m_Name: BEAR
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,11 +494,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 3202820001600823800}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
-  m_Height: 2.69
+  m_Height: 2
   m_Direction: 2
-  m_Center: {x: 0, y: 0.91, z: 0.33}
+  m_Center: {x: 0, y: 0.91, z: 0.09}
 --- !u!114 &6868938054615650411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,13 +512,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
+  target: {fileID: 0}
+  worldStructuresComponent: {fileID: 0}
   attackAudio: {fileID: 8296172668459386838}
-  defaultWeapon: {fileID: 11400000, guid: 553c7dd8aef98eb488628f31d49eabc7, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: ed2be6e807c62d64587900fdd59388d5, type: 2}
   rightHandTransform: {fileID: 8980603005647068266}
   leftHandTransform: {fileID: 4324451325880792427}
   arrowPos: {fileID: 0}
   projectile: {fileID: 0}
-  timeToShoutAgain: 0
+  timeToShoutAgain: 5
 --- !u!114 &6868938054615650410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1885295250209510379}
-  _maxSpeed: 4
+  _maxSpeed: 3
 --- !u!114 &6868938054615650389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +561,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 800
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -581,6 +585,7 @@ MonoBehaviour:
   m_deathAudio: {fileID: 8296172668459386838}
   m_hurtAudio: {fileID: 8296172668459386838}
   _bloodSplashEffect: {fileID: 0}
+  lowHealththreshold: 40
   slider: {fileID: 6868938053484215063}
   gradient:
     serializedVersion: 2
@@ -720,14 +725,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccadcb5bf6826da47891b0b80e0e2d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 5
-  _suspicionTime: 5
-  _aggroCooldownTime: 5
+  chaseDistance: 8
+  _suspicionTime: 10
+  _aggroCooldownTime: 10
   _patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 3
   patrolSpeedFraction: 0.18
   shoutDistance: 10
+  player: {fileID: 0}
+  candidate: {fileID: 0}
+  currentHidingSpot: {fileID: 0}
+  hide: {fileID: 0}
+  attackablesPC: []
+  attackableBuildings: []
+  attackableNPC: []
+  HidingPlaces: []
+--- !u!114 &1528210912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202820001600823800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4b6b5a288e0c438ba683e64c0238e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: 1
+--- !u!114 &1528210913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202820001600823800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d4525cb3d9364081108ebea092d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3216241955088528330
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,5 @@ AnimatorOverrideController:
   m_Name: unarmed_override_controller
   m_Controller: {fileID: 9100000, guid: 6c9ff24cf24e23d46a0b5a089ec1986b, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400002, guid: 6844dcb6a866ab34fa96c67e39eab693, type: 3}
-    m_OverrideClip: {fileID: 7400002, guid: 6844dcb6a866ab34fa96c67e39eab693, type: 3}
-  - m_OriginalClip: {fileID: 7400002, guid: 963c602205c554940aa8cac531de90a5, type: 3}
-    m_OverrideClip: {fileID: 7400022, guid: 0cf6cd90fa783f74d9a28a42e2071737, type: 3}
+  - m_OriginalClip: {fileID: 7400004, guid: 0cf6cd90fa783f74d9a28a42e2071737, type: 3}
+    m_OverrideClip: {fileID: 7400004, guid: 0cf6cd90fa783f74d9a28a42e2071737, type: 3}

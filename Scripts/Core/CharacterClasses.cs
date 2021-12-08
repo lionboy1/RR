@@ -17,7 +17,8 @@ public class CharacterClasses: MonoBehaviour
         Soldiers = 9,
         Thugs = 10,
         Reptiles = 11,
-        Fish = 12
+        Fish = 12,
+        Goblin = 13
     }
     public NPCType nPC;
 

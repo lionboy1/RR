@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7950661497352021849}
   - component: {fileID: 7950661497353119129}
   - component: {fileID: 2721981612303157262}
-  - component: {fileID: 6194619407885078843}
   - component: {fileID: 3868585738542829646}
   m_Layer: 0
   m_Name: barbarian_axe
@@ -97,19 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.24857983, y: 0.06601551, z: 0.75117457}
   m_Center: {x: -0.07672274, y: -0.00000640535, z: -0.3730188}
---- !u!114 &6194619407885078843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950661497355057947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b890356f377207468119852e5659d23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
 --- !u!54 &3868585738542829646
 Rigidbody:
   m_ObjectHideFlags: 0

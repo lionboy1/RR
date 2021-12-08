@@ -11,6 +11,7 @@ namespace RR.Core
         [SerializeField] AudioSource m_deathAudio;
         [SerializeField] AudioSource m_hurtAudio;
         [SerializeField] GameObject _bloodSplashEffect;
+        [SerializeField] float lowHealththreshold;
         AIController L_aiController;
         Animator _anim;
         ActionScheduler _actionScheduler;
@@ -52,7 +53,7 @@ namespace RR.Core
 
         public bool LowHealth()
         {
-            return m_currHealth < 90;
+            return m_currHealth < lowHealththreshold;
         }
 
         public void Damage(float damage)
