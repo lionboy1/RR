@@ -15,4 +15,9 @@ public class Item : ScriptableObject
         //Implement based on need per item
         Debug.Log("Using " + name);
     }
+
+    public void RemoveFromInventory()
+    {
+        Inventory.instance.Remove(this);
+    }
 }

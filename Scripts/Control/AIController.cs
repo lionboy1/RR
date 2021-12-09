@@ -135,8 +135,6 @@ namespace RR.Control
                 _fighter.Cancel();
                 _actionScheduler.CancelCurrentAction();
                 _mover.MoveTo(hide.transform.position, 1);
-                
-                Debug.Log("Moving..");
             }
             bool FindClosestTargetToAttack()
             {
