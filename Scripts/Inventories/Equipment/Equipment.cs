@@ -8,6 +8,11 @@ namespace RR.Inventories.Equipment
     public class Equipment : Item
     {
         public EquipmentSlot equipSlot;
+        public SkinnedMeshRenderer mesh;
+        public EquipmentMeshRegion[] coveredMeshRegions;
+
+        public int armorModifier;//Increases/decreases armor.
+        public int damageModifier;//Increases/decreases damage.
         public override void Use()
         {
             base.Use();
@@ -23,8 +28,11 @@ namespace RR.Inventories.Equipment
         Legs,
         Weapon,
         Shield,
-        Feet
+        Feet,
+        FullBody
     }
+
+    public enum EquipmentMeshRegion{ Legs, Arms, Torso}//Corresponds to body blend shapes
 }
 
 
