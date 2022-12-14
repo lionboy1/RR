@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    
     public void NewRRGame()
     {
         //Fresh loading of the first scene. 
@@ -13,4 +14,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

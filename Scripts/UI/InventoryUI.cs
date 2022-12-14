@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKey(KeyCode.I))
         {
             //Hide UI
             inventoryUI.SetActive(!inventoryUI.activeSelf);

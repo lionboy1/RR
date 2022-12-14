@@ -17,9 +17,8 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        
         loadingScreen.SetActive(true);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         
         while(!operation.isDone)
         {
